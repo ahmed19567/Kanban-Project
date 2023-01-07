@@ -14,12 +14,16 @@ export interface task {
 	title: string;
 	desciption: string;
 	status: string;
+	subTask?: subtask[];
 }
 export interface module {
 	moduleType: modalTypes;
 	moduleDescription: {};
 }
-
+export interface subtask {
+	title: string;
+	isCompleted: boolean;
+}
 export interface column {
 	id: string;
 	name: string;
@@ -30,4 +34,11 @@ export interface board {
 	id: string;
 	name: string;
 	columns: column[];
+}
+export interface tab {
+	addNew?: boolean;
+}
+
+export interface columnProps {
+	columnData: column;
 }

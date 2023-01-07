@@ -1,6 +1,5 @@
 body{
     font-family: 'Plus Jakarta Sans', sans-serif;
-font-family: 'Poppins', sans-serif;
 }
 *, *::before, *::after {
     box-sizing: border-box;
@@ -52,3 +51,22 @@ font-family: 'Poppins', sans-serif;
   #root, #__next {
     isolation: isolate;
   }
+
+
+  .column{
+    display: flex;
+  }
+  .card{
+    background: lightgray;
+  }
+  .innercard{
+    background-color: lightyellow;
+  }
+ .btn{
+  background-color: black;
+ }
+ main{
+  display: flex;
+  align-items: center;
+ }
+ 

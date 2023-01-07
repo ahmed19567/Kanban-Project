@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { module } from "../Interface/modal";
+import { module } from "../Interface/Interface";
 
 const initialState: module = {
 	moduleType: "",
