@@ -3,16 +3,15 @@ import { module } from "../Interface/Interface";
 
 const initialState: module = {
 	moduleType: "",
-	moduleDescription: {},
 };
 const modalSlice = createSlice({
 	name: "modal",
 	initialState,
 	reducers: {
-		openModule: (state, action: PayloadAction<module>) => {
-			return { ...state, ...action.payload };
+		openModal: (state, action: PayloadAction<any>) => {
+			return { ...state, moduleType: action.payload };
 		},
-		closeModule: (state, action: PayloadAction<module>) => {
+		closeModal: (state) => {
 			return {
 				...state,
 				moduleType: "",
@@ -21,5 +20,5 @@ const modalSlice = createSlice({
 	},
 });
 
-export const { openModule, closeModule } = modalSlice.actions;
+export const { openModal, closeModal } = modalSlice.actions;
 export default modalSlice.reducer;

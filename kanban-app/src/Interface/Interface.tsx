@@ -12,13 +12,12 @@ export type modalTypes =
 export interface task {
 	id: string;
 	title: string;
-	desciption: string;
+	description: string;
 	status: string;
-	subTask?: subtask[];
+	subtasks: subtask[];
 }
 export interface module {
 	moduleType: modalTypes;
-	moduleDescription: {};
 }
 export interface subtask {
 	title: string;

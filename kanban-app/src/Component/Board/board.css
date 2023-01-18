@@ -1,14 +1,67 @@
 .board{
     width: 71rem;
-    height: 800px;
     background-color: #20212c;
-    height: 700px;
     color: white;
     display: flex;
-    justify-content: space-between;
+    padding: 1.5rem 2rem;
     
 }
+
+
 .column{
     display: flex;
     flex-direction: column;
+    margin-right: 1.5rem;
+    width: 20rem;
 }
+.column_title_div{
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    height: 20px;
+    margin-bottom: 1em;
+    /* align-items: center; */
+}
+.ballcolor{
+    /* width: 15px;
+    height: 15px;
+    background-color: white;
+    border-radius: 50%; */
+    height: 100%;
+    width: 20px;
+    border-radius: 50%;
+    background-color: white;
+   display: flex;
+   align-items: center;
+}
+ 
+.props_title{
+    font-size: 16px;
+    font-weight: 700;
+    color: #828fa3;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  
+}
+.task_title{
+    margin-bottom: .5rem;
+    font-weight: 700;
+}
+.card{
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    padding: 1.5rem 1rem;
+    color: white;
+    min-height: 100px;
+    box-shadow:  rgba(54,78,126,.1) 0px 4px 6px 0px;
+    box-sizing: border-box;
+    background-color: #2b2c37;
+    max-width: 300px;
+    font-size: 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(134,134,134,.1);;
+ 
+ }

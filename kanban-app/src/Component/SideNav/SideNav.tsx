@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { store, RootState } from "../../Store";
 import { setTab } from "../../Features/TabSlice";
 import Button from "../ReusableComponents/Button";
+import { openModal } from "../../Features/ModalSlice";
 import boardIcon from "../../assets/icon-board.svg";
 import Tab from "./Tab";
 
@@ -10,10 +11,14 @@ import "./sidenav.css";
 function SideNav() {
 	const board = useSelector((state: RootState) => state.data.data);
 	const tab = useSelector((state: RootState) => state.tabs);
+	const modal = useSelector((state: RootState) => state.modal.moduleType);
 	const dispatch = useDispatch();
 
 	function changeTab(tab: string) {
 		dispatch(setTab(tab));
+	}
+	function handleOpenModal() {
+		dispatch(openModal("AddBoard"));
 	}
 	return (
 		<div className="sidenav ">
@@ -39,7 +44,7 @@ function SideNav() {
 						/>
 					</svg>
 
-					<p>+ Create New Board</p>
+					<p onClick={handleOpenModal}>+ Create New Board</p>
 				</Button>
 			</div>
 			<div className="sidenav_bottom">

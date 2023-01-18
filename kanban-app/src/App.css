@@ -56,9 +56,7 @@ body{
   .column{
     display: flex;
   }
-  .card{
-    background: lightgray;
-  }
+ 
   .innercard{
     background-color: lightyellow;
   }
@@ -67,6 +65,5 @@ body{
  }
  main{
   display: flex;
-  align-items: center;
+  /* align-items: center; */
  }
- 

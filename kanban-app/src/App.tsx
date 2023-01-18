@@ -8,14 +8,19 @@ import { loadState } from "./Features/Browser-Storage";
 import { store } from "./Store";
 import SideNav from "./Component/SideNav/SideNav";
 import Board from "./Component/Board/Board";
+import { column } from "./Interface/Interface";
+import { openModal } from "./Features/ModalSlice";
+import Modal from "./Component/Modal/Modal";
 import data from "./Data/data.json";
-
 import "./App.css";
+import AddBoard from "./Component/Modal/AddBoard/AddBoard";
 
 function App() {
 	const [datas, setDatas] = useState(data);
 	const board = useSelector((state: RootState) => state.data);
 	const tab = useSelector((state: RootState) => state.tabs);
+	const modals = useSelector((state: RootState) => state.modal.moduleType);
+
 	const disPatch = useDispatch();
 
 	useEffect(() => {
@@ -31,6 +36,8 @@ function App() {
 				<SideNav />
 				<Board />
 			</main>
+			{/* <AddBoard /> */}
+			<Modal />
 		</div>
 	);
 }

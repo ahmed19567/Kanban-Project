@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction, current } from "@reduxjs/toolkit";
 import { board } from "../Interface/Interface";
+import { column } from "../Interface/Interface";
+import { produce } from "immer";
 
 export type boardSlice = {
 	data: board[];
@@ -26,7 +28,14 @@ const dataSlice = createSlice({
 			const hold = state.data.find((x) => x.name === action.payload);
 			console.log(current(hold));
 		},
-		addBoard: (state, action: PayloadAction<any>) => {},
+		addBoard: (state, action: PayloadAction<any>) => {
+			const newBoard = action.payload;
+			const data = current(state.data);
+			const newState = produce(data, (draft: any) => {
+				draft.push(newBoard);
+			});
+			return { ...state, data: newState };
+		},
 	},
 });
 export const { addData, getData, getId, addBoard } = dataSlice.actions;
