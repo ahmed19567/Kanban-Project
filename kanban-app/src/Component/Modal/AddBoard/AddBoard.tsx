@@ -2,11 +2,9 @@ import React, { FormEvent, useEffect } from "react";
 import { nanoid } from "@reduxjs/toolkit";
 import { useSelector, useDispatch } from "react-redux";
 import { board } from "../../../Interface/Interface";
-import { column } from "../../../Interface/Interface";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { RootState } from "../../../Store";
 import { addBoard } from "../../../Features/DataSlice";
-import { FormProvider } from "react-hook-form";
 import { setTab } from "../../../Features/TabSlice";
 import { closeModal } from "../../../Features/ModalSlice";
 import Modal from "../../ReusableComponents/Modal/Modal";
@@ -34,7 +32,8 @@ function AddBoard() {
 	});
 
 	function addNewColumn() {
-		if (fields.length < 3) return append({ id: nanoid(), name: "", tasks: [] });
+		if (fields.length < 10)
+			return append({ id: nanoid(), name: "", tasks: [] });
 		else return;
 	}
 

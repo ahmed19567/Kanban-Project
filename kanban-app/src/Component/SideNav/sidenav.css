@@ -1,13 +1,15 @@
 .sidenav{
-    width: 18.8rem;
+    /* width: 18.8rem; */
+    width: 20vw;
     background-color: #2b2c37;
    color: white;
-   /* height: 700px; */
-   height: 971px;
    display: flex;
    flex-direction: column;
    justify-content: space-between;
-   /* padding-left: 2em; */
+   padding-top: 1rem;
+   height: 100;
+   /* justify-content: space-between; */
+    /* padding-left: 2em; */
  }
  .sidenav_top > h4{
    color: #828fa3;
@@ -90,9 +92,7 @@
 .sidenav_hide_sidebar{
   display: flex;
   align-items: center;
-  /* justify-content: center; */
-  align-items: center;
-  padding-left: 2em;
+   padding-left: 2em;
   background-color: transparent;
   border: none;
   color: #828fa3;

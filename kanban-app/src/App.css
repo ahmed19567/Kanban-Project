@@ -52,18 +52,19 @@ body{
     isolation: isolate;
   }
 
-
-  .column{
-    display: flex;
-  }
- 
   .innercard{
     background-color: lightyellow;
   }
  .btn{
   background-color: black;
  }
+ .app{
+  height: 100vh;
+ }
  main{
   display: flex;
-  /* align-items: center; */
+  min-height: calc(100% - 6rem);
+     /* align-items: center; */
  }
+
+ 

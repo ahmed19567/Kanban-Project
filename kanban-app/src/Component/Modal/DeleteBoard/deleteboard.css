@@ -1,0 +1,9 @@
+.deleteboard{
+    width: 350px;
+    height: 400px;
+    background-color: #2b2c37;
+
+}
+.deketediv{
+    display: flex;
+}

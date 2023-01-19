@@ -10,9 +10,9 @@ export type modalTypes =
 	| "";
 
 export interface task {
-	id: string;
-	title: string;
-	description: string;
+	id?: string;
+	title?: string;
+	description?: string;
 	status: string;
 	subtasks: subtask[];
 }
@@ -24,7 +24,7 @@ export interface subtask {
 	isCompleted: boolean;
 }
 export interface column {
-	id: string;
+	id?: string;
 	name: string;
 	tasks: task[];
 }

@@ -28,25 +28,6 @@ function Board() {
 					<Column columnData={columnData} />
 				</>
 			))}
-			{/* {columnDatas.map((val) => (
-				<>
-					<Column
-						columnData={{
-							id: val.name,
-							name: val.name,
-							tasks: [
-								{
-									id: "cs",
-									title: "cs",
-									desciption: "sdds",
-									status: "todo",
-								},
-							],
-						}}
-					/>
-				</>
-			))} */}
-			{/* {<Column columnData={{ id: "1", name: "ahmed", tasks: [] }} />} */}
 		</div>
 	);
 }

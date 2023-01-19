@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, current } from "@reduxjs/toolkit";
-import { board } from "../Interface/Interface";
+import { board, task } from "../Interface/Interface";
 import { column } from "../Interface/Interface";
 import { produce } from "immer";
 
@@ -26,7 +26,6 @@ const dataSlice = createSlice({
 		},
 		getId: (state, action: PayloadAction<any>) => {
 			const hold = state.data.find((x) => x.name === action.payload);
-			console.log(current(hold));
 		},
 		addBoard: (state, action: PayloadAction<any>) => {
 			const newBoard = action.payload;
@@ -36,7 +35,35 @@ const dataSlice = createSlice({
 			});
 			return { ...state, data: newState };
 		},
+		addColumn: (state, action: PayloadAction<any>) => {
+			const { board, newColumn } = action.payload;
+			const datas = current(state.data);
+			const currentBoard = datas.find((val) => val.name === board);
+			const newState = produce(datas, (draft: any) => {
+				const currentDraft = current(draft);
+				const currentIndex = datas.findIndex((x) => x.name === board);
+				const updatedBoard = {
+					...newColumn,
+				};
+				draft[currentIndex] = updatedBoard;
+			});
+
+			return { ...state, data: newState };
+		},
+		deleteBoard: (state, action: PayloadAction<any>) => {
+			const { board } = action.payload;
+			const datas = current(state.data);
+			const currentBoard = datas.find((val) => val.name === board);
+
+			const newState = produce(datas, (draft: any) => {
+				const currentDraft = draft.filter((x: any) => x.name !== board);
+				draft = currentDraft;
+				return draft;
+			});
+			return { ...state, data: newState };
+		},
 	},
 });
-export const { addData, getData, getId, addBoard } = dataSlice.actions;
+export const { addData, getData, getId, addBoard, addColumn, deleteBoard } =
+	dataSlice.actions;
 export default dataSlice.reducer;

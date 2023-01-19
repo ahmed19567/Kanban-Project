@@ -20,6 +20,9 @@ function SideNav() {
 	function handleOpenModal() {
 		dispatch(openModal("AddBoard"));
 	}
+	function handleDelete() {
+		dispatch(openModal("DeleteBoard"));
+	}
 	return (
 		<div className="sidenav ">
 			<div className="sidenav_top">

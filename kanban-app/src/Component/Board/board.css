@@ -1,18 +1,18 @@
 .board{
-    width: 71rem;
+    /* width: 71rem; */
+    width: 80vw;
     background-color: #20212c;
     color: white;
     display: flex;
-    padding: 1.5rem 2rem;
-    
+    height: 100vh;
+    padding: 1.5rem 2rem;     
 }
-
-
 .column{
     display: flex;
     flex-direction: column;
     margin-right: 1.5rem;
     width: 20rem;
+    height: 100%;
 }
 .column_title_div{
     display: flex;
@@ -23,10 +23,6 @@
     /* align-items: center; */
 }
 .ballcolor{
-    /* width: 15px;
-    height: 15px;
-    background-color: white;
-    border-radius: 50%; */
     height: 100%;
     width: 20px;
     border-radius: 50%;
@@ -64,4 +60,7 @@
     border-radius: 10px;
     border: 1px solid rgba(134,134,134,.1);;
  
+ }
+ .scroll_container{
+    /* height: 100%; */
  }

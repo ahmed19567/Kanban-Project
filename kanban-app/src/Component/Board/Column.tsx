@@ -6,7 +6,7 @@ function Column(props: columnProps) {
 	return (
 		<div className="column">
 			<div className="column_title_div">
-				<span className="ballcolor"></span>
+				<span className={`ballcolor`}></span>
 				<p className="props_title">{props.columnData.name}</p>
 			</div>
 			{props.columnData.tasks.map((data: task) => (
