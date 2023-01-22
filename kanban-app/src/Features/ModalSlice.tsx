@@ -3,13 +3,14 @@ import { module } from "../Interface/Interface";
 
 const initialState: module = {
 	moduleType: "",
+	tasks: {},
 };
 const modalSlice = createSlice({
 	name: "modal",
 	initialState,
 	reducers: {
-		openModal: (state, action: PayloadAction<any>) => {
-			return { ...state, moduleType: action.payload };
+		openModal: (state, action: PayloadAction<module>) => {
+			return { ...state, ...action.payload };
 		},
 		closeModal: (state) => {
 			return {

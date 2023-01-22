@@ -1,0 +1,14 @@
+.edittask{
+    width: 350px;
+    height: 350px;
+    background-color: #2b2c37;
+    display: flex;
+    flex-direction: column;
+}
+.addnewtaskprop{
+    display: flex;
+    column-gap: 16px;
+ }
+ .addnewtaskprop > input{
+    width: 80%;
+ }

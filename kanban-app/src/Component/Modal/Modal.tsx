@@ -4,13 +4,17 @@ import { RootState } from "../../Store";
 import AddBoard from "./AddBoard/AddBoard";
 import AddNewColumn from "./AddNewColumn/AddNewColumn";
 import DeleteBoard from "./DeleteBoard/DeleteBoard";
+import ViewTask from "./ViewTask/ViewTask";
+import EditTask from "./EditTask/EditTask";
 function Modal() {
-	const modal = useSelector((state: RootState) => state.modal.moduleType);
+	const modal = useSelector((state: RootState) => state.modal);
 	return (
 		<>
-			{modal === "AddBoard" && <AddBoard />}
-			{modal === "AddColumn" && <AddNewColumn />}
-			{modal === "DeleteBoard" && <DeleteBoard />}
+			{modal.moduleType === "AddBoard" && <AddBoard />}
+			{modal.moduleType === "AddColumn" && <AddNewColumn />}
+			{modal.moduleType === "DeleteBoard" && <DeleteBoard />}
+			{modal.moduleType === "ViewTask" && <ViewTask {...modal} />}
+			{/* {modal.moduleType === "EditTask" && <EditTask />} */}
 		</>
 	);
 }

@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
 import { nanoid } from "@reduxjs/toolkit";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../Store";
-import { useForm, useFieldArray, Controller } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { board, column } from "../../../Interface/Interface";
 import { addColumn } from "../../../Features/DataSlice";
 import "./column.css";

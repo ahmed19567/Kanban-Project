@@ -1,23 +1,15 @@
-import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../Store";
-import { columnProps } from "../../Interface/Interface";
-import { board } from "../../Interface/Interface";
 import { column } from "../../Interface/Interface";
-import { task } from "../../Interface/Interface";
 import "./board.css";
 import Column from "./Column";
 
 import "./board.css";
-import { title } from "process";
 function Board() {
 	const dispatch = useDispatch();
 	const tab = useSelector((state: RootState) => state.tabs);
 	const board = useSelector((state: RootState) => state.data.data);
-	// function columnData() {
-	// 	const columnDatas = board.find((x) => x.name === tab);
-	// 	return columnDatas;
-	// }
+
 	const columnDatas = board.filter((x) => x.name === tab);
 	const findCurrentData = board.find((x) => x.name === tab);
 

@@ -2,15 +2,18 @@ import { createSlice, PayloadAction, current } from "@reduxjs/toolkit";
 import { board, task } from "../Interface/Interface";
 import { column } from "../Interface/Interface";
 import { produce } from "immer";
+import { stat } from "fs";
 
 export type boardSlice = {
 	data: board[];
-	boardStatus: any;
+	boardStatus: string;
+	columnStatus: string;
 	colorTheme: "light" | "dark";
 };
 const initialState: boardSlice = {
 	data: [],
 	boardStatus: "",
+	columnStatus: "",
 	colorTheme: "dark",
 };
 
@@ -62,8 +65,32 @@ const dataSlice = createSlice({
 			});
 			return { ...state, data: newState };
 		},
+		editTask: (state, action: PayloadAction<any>) => {
+			const { board, status, newTask, title } = action.payload;
+			const data = current(state.data);
+			const currentBoard = data.find((x) => x.name === board);
+			const boardIndex = data.findIndex((x) => x.name === board);
+
+			const columnIndex = data[boardIndex].columns.findIndex(
+				(x) => x.name === status
+			);
+			const taskIndex = data[boardIndex].columns[columnIndex].tasks.findIndex(
+				(v) => v.title === title
+			);
+			const newState = produce(data, (draft) => {
+				draft[boardIndex].columns[columnIndex].tasks[taskIndex] = newTask;
+			});
+			return { ...state, data: newState };
+		},
 	},
 });
-export const { addData, getData, getId, addBoard, addColumn, deleteBoard } =
-	dataSlice.actions;
+export const {
+	addData,
+	getData,
+	getId,
+	addBoard,
+	addColumn,
+	deleteBoard,
+	editTask,
+} = dataSlice.actions;
 export default dataSlice.reducer;

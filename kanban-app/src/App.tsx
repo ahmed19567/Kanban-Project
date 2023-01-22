@@ -2,18 +2,19 @@ import { useEffect, useState } from "react";
 import Header from "./Component/Header/Header";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "./Store";
-import { addData, getData, getId, addBoard } from "./Features/DataSlice";
+import { addData } from "./Features/DataSlice";
 import { setTab } from "./Features/TabSlice";
 import { loadState } from "./Features/Browser-Storage";
-import { store } from "./Store";
 import SideNav from "./Component/SideNav/SideNav";
 import Board from "./Component/Board/Board";
-import { column } from "./Interface/Interface";
-import { openModal } from "./Features/ModalSlice";
 import Modal from "./Component/Modal/Modal";
 import data from "./Data/data.json";
+import Input from "./Component/ReusableComponents/Input/Input";
 import "./App.css";
 import ScrollContainer from "react-indiana-drag-scroll";
+import ViewTask from "./Component/Modal/ViewTask/ViewTask";
+import DropDown from "./Component/ReusableComponents/DropDown/DropDown";
+import EditTask from "./Component/Modal/EditTask/EditTask";
 // import AddBoard from "./Component/Modal/AddBoard/AddBoard";
 // import AddNewColumn from "./Component/Modal/AddNewColumn/AddNewColumn";
 // import DeleteBoard from "./Component/Modal/DeleteBoard/DeleteBoard";
@@ -35,14 +36,15 @@ function App() {
 	return (
 		<div className="App ">
 			<Header />
-			<ScrollContainer className="scroll_container">
-				<main>
-					<SideNav />
-					<Board />
-				</main>
-			</ScrollContainer>
-
-			<Modal />
+			{/* <ScrollContainer className="scroll_container" vertical={true}> */}
+			<main>
+				<SideNav />
+				<Board />
+			</main>
+			{/* </ScrollContainer> */}
+			{/* <ViewTask /> */}
+			{/* <Modal /> */}
+			<EditTask />
 		</div>
 	);
 }

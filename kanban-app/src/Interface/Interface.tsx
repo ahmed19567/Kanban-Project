@@ -18,6 +18,7 @@ export interface task {
 }
 export interface module {
 	moduleType: modalTypes;
+	tasks?: any;
 }
 export interface subtask {
 	title: string;

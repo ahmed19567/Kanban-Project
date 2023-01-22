@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { store, RootState } from "../../Store";
 import { setTab } from "../../Features/TabSlice";
-import Button from "../ReusableComponents/Button";
+import Button from "../ReusableComponents/Button/Button";
 import { openModal } from "../../Features/ModalSlice";
 import boardIcon from "../../assets/icon-board.svg";
 import Tab from "./Tab";
@@ -18,10 +18,10 @@ function SideNav() {
 		dispatch(setTab(tab));
 	}
 	function handleOpenModal() {
-		dispatch(openModal("AddBoard"));
+		dispatch(openModal({ moduleType: "AddBoard" }));
 	}
 	function handleDelete() {
-		dispatch(openModal("DeleteBoard"));
+		dispatch(openModal({ moduleType: "DeleteBoard" }));
 	}
 	return (
 		<div className="sidenav ">
