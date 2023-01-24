@@ -7,8 +7,9 @@ import { RootState } from "../../../Store";
 import { addBoard } from "../../../Features/DataSlice";
 import { setTab } from "../../../Features/TabSlice";
 import { closeModal } from "../../../Features/ModalSlice";
+import { crossIcon } from "../../../Icons/Icon";
 import Modal from "../../ReusableComponents/Modal/Modal";
-import "./addboard.css";
+import "./addboard.scss";
 
 function AddBoard() {
 	const data = useSelector((state: RootState) => state.data.data);
@@ -50,9 +51,9 @@ function AddBoard() {
 				onSubmit={handleSubmit(submitBoard)}
 			>
 				<div className="addnewboard_container">
-					<div className="addnewboard_topwrapper">
-						<h2>Add New Board</h2>
-					</div>
+					{/* <div className="addnewboard_topwrapper"> */}
+					<h2>Add New Board</h2>
+					{/* </div> */}
 
 					<div className="board_boxwrapper">
 						<label htmlFor="name">Name</label>
@@ -83,7 +84,9 @@ function AddBoard() {
 									defaultValue={`${value}`}
 									id="columns"
 								/>
-								<button onClick={() => remove(index)}>X</button>
+								<button onClick={() => remove(index)} className="crossicon">
+									{crossIcon}
+								</button>
 							</div>
 						))}
 					</div>

@@ -4,9 +4,12 @@
     background-color: #20212c;
     color: white;
     display: flex;
-    height: 100vh;
-    padding: 1.5rem 2rem;     
+    height: calc(100vh - 6rem);
+    padding: 1.5rem 2rem;    
+    box-sizing: border-box; 
+    overflow-y: scroll;
 }
+ 
 .column{
     display: flex;
     flex-direction: column;
@@ -58,7 +61,8 @@
     max-width: 300px;
     font-size: 14px;
     border-radius: 10px;
-    border: 1px solid rgba(134,134,134,.1);;
+    border: 1px solid rgba(134,134,134,.1);
+    cursor: grab;
  
  }
  .scroll_container{

@@ -35,7 +35,7 @@ function DropDown(props: dropDownTypes) {
 					<button className="dropdownmenu_btn" onClick={edit}>
 						Edit {props.title}
 					</button>
-					<button className="dropdownmenu_btn" onClick={remove}>
+					<button className="dropdownmenu_btn delete" onClick={remove}>
 						Delete {props.title}
 					</button>
 				</div>

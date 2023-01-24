@@ -1,11 +1,12 @@
 import icon from "../../assets/logo-mobile.svg";
 import title from "../../assets/logo-light.svg";
-import verticalellipsis from "../../assets/icon-vertical-ellipsis.svg";
+import { verticalellipsis } from "../../Icons/Icon";
 import { useSelector, useDispatch } from "react-redux";
 import DropDown from "../ReusableComponents/DropDown/DropDown";
 import { openModal, closeModal } from "../../Features/ModalSlice";
+import { addTask } from "../../Features/DataSlice";
 import { RootState } from "../../Store";
-import "./header.css";
+import "./header.scss";
 function Header() {
 	const tab = useSelector((state: RootState) => state.tabs);
 	const dispatch = useDispatch();
@@ -16,6 +17,10 @@ function Header() {
 	}
 	function editModal() {
 		dispatch(openModal({ moduleType: "AddColumn" }));
+	}
+
+	function addTask() {
+		dispatch(openModal({ moduleType: "AddNewTask" }));
 	}
 
 	return (
@@ -30,7 +35,9 @@ function Header() {
 				<div className="launch">
 					<h3>{tab}</h3>
 					<div className="launch_button_container">
-						<button className="launch_button">&nbsp; + Add New Task</button>
+						<button className="launch_button" onClick={addTask}>
+							&nbsp; + Add New Task
+						</button>
 						{/* <div> */}
 						<DropDown
 							className="svg_icon"
@@ -38,7 +45,7 @@ function Header() {
 							onDelete={handleModal}
 							onEdit={editModal}
 						>
-							<img src={verticalellipsis} title="Board" />
+							{verticalellipsis}
 						</DropDown>
 						{/* </div> */}
 					</div>

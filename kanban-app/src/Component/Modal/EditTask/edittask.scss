@@ -1,0 +1,85 @@
+.edittask{
+    background-color: #2b2c37;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 2em;
+    border-radius: 10px;
+ 
+    h2{
+       font-size: 16px;
+       line-height: 1;
+       margin-bottom: 1em;
+    }
+    
+       
+}
+.edittask_wrapper{
+     
+    input{
+        width: 100%;
+        background-color: transparent;
+        margin-bottom: 1em;
+        border: 2px solid rgba(130,143,163,.4);
+        color: #fff;
+        font-size: .8em;
+        font-weight: 700;
+        
+     }
+    input:focus{
+        border: 1px solid transparent;
+        outline: 2px solid rgb(94,92,170);
+     
+      }
+    textarea{
+        width: 100%;
+        width: 100%;
+        background-color: transparent;
+        margin-bottom: 1em;
+        border: 2px solid rgba(130,143,163,.4);
+        color: #fff;
+    }
+    textarea:focus{
+        border: 1px solid transparent;
+        outline: 2px solid rgb(94,92,170);
+
+    }
+}
+.addnewtaskprop{
+    display: flex;
+    column-gap: .5rem;
+ }
+ 
+ .edittask_wrapper{
+    display: flex;
+    flex-direction: column;
+ }
+ .addnewtask_btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5em 1em;
+    border-radius: 20px;
+    color: rgb(94,92,170);
+    border: none;
+    margin-bottom: 1rem;
+    font-size: 14px;
+    font-weight: 700;
+ 
+    :hover{
+       background-color: yellow;
+    }
+ }
+ .save_changed{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5em 1em;
+    border-radius: 20px;
+    background-color: rgb(94,92,170);
+    font-size: 14px;
+    color: #fff;
+    border: none;
+    margin-bottom: 1rem;
+    font-weight: 700;
+ }

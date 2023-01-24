@@ -8,6 +8,7 @@
     right: 0;
     width: 12rem;
     animation: fadeIn .9s ease;
+    border-radius: 10px;
      
 }
 @keyframes fadeIn {
@@ -16,15 +17,22 @@
   }
   .dropdownmenu_btn{
     padding: .5em 1em;
-    font-size: 14px;
-    font-weight: 700;
-    color: white;
+    font-size: 16px;
+    font-weight: 400;
+    color: #828fa3;
     margin-bottom: .5em;
     border: none;
     background: transparent;
     cursor: pointer;
   }
   .dropdownmenu_btn img{
-    margin-left: .5em;
-    background: transparent;
+    /* margin-left: .5em;
+    background: transparent; */
   }
+ .delete{
+  color: #ea5555;
+ }
+ .dropdownbtn{
+  background-color: transparent;
+  border: none;
+ }

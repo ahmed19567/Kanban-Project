@@ -6,8 +6,9 @@ import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { closeModal } from "../../../Features/ModalSlice";
 import { editTask } from "../../../Features/DataSlice";
 import Modal from "../../ReusableComponents/Modal/Modal";
+import { crossIcon } from "../../../Icons/Icon";
 import { RootState } from "../../../Store";
-import "./edittask.css";
+import "./edittask.scss";
 
 function EditTask() {
 	const data = useSelector((state: RootState) => state.data.data);
@@ -68,6 +69,12 @@ function EditTask() {
 					</label>
 				</div>
 				<div className="edittask_wrapper">
+					<p>Description</p>
+					<label htmlFor="">
+						<textarea rows={5} {...register("description")} />
+					</label>
+				</div>
+				<div className="edittask_wrapper">
 					{fields.map((value, index) => (
 						<div className="addnewtaskprop">
 							<input
@@ -79,11 +86,17 @@ function EditTask() {
 									},
 								})}
 							/>
-							{/* <button onClick={() => remove(index)}>X</button> */}
+							<button onClick={() => remove(index)} className="crossicon">
+								{crossIcon}
+							</button>
 						</div>
 					))}
-					<button className="addnewtask" onClick={() => addNewTask()}>
+					<button className="addnewtask_btn" onClick={() => addNewTask()}>
 						Add New Task
+					</button>
+
+					<button className="save_changed" type="submit">
+						Save Changes
 					</button>
 				</div>
 			</form>

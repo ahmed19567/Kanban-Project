@@ -5,6 +5,7 @@ import { RootState } from "./Store";
 import { addData } from "./Features/DataSlice";
 import { setTab } from "./Features/TabSlice";
 import { loadState } from "./Features/Browser-Storage";
+import { setTheme } from "./Features/DataSlice";
 import SideNav from "./Component/SideNav/SideNav";
 import Board from "./Component/Board/Board";
 import Modal from "./Component/Modal/Modal";
@@ -15,6 +16,7 @@ import ScrollContainer from "react-indiana-drag-scroll";
 import ViewTask from "./Component/Modal/ViewTask/ViewTask";
 import DropDown from "./Component/ReusableComponents/DropDown/DropDown";
 import EditTask from "./Component/Modal/EditTask/EditTask";
+import AddNewTask from "./Component/Modal/AddNewTask/AddNewTask";
 // import AddBoard from "./Component/Modal/AddBoard/AddBoard";
 // import AddNewColumn from "./Component/Modal/AddNewColumn/AddNewColumn";
 // import DeleteBoard from "./Component/Modal/DeleteBoard/DeleteBoard";
@@ -22,6 +24,7 @@ import EditTask from "./Component/Modal/EditTask/EditTask";
 function App() {
 	const [datas, setDatas] = useState(data);
 	const board = useSelector((state: RootState) => state.data);
+	const theme = useSelector((state: RootState) => state.data.colorTheme);
 	const tab = useSelector((state: RootState) => state.tabs);
 	const modals = useSelector((state: RootState) => state.modal.moduleType);
 
@@ -33,18 +36,20 @@ function App() {
 		disPatch(setTab(board.data[0].name));
 	}, []);
 
+	function toggleColor() {
+		if (theme === "dark") disPatch(setTheme("light"));
+		else if (theme === "light") disPatch(setTheme("dark"));
+	}
+
 	return (
-		<div className="App ">
+		<div className={`App ${theme}`}>
 			<Header />
-			{/* <ScrollContainer className="scroll_container" vertical={true}> */}
-			<main>
-				<SideNav />
+			<main className="main">
+				<SideNav toggleTheme={toggleColor} theme={theme} />
 				<Board />
 			</main>
-			{/* </ScrollContainer> */}
-			{/* <ViewTask /> */}
-			{/* <Modal /> */}
-			<EditTask />
+
+			<Modal />
 		</div>
 	);
 }
