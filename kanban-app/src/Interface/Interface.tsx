@@ -15,6 +15,7 @@ export interface task {
 	description?: string;
 	status: string;
 	subtasks: subtask[];
+	index?: number;
 }
 export interface module {
 	moduleType: modalTypes;
@@ -41,4 +42,5 @@ export interface tab {
 
 export interface columnProps {
 	columnData: column;
+	index: number;
 }

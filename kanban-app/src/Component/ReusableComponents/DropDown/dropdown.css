@@ -9,6 +9,7 @@
     width: 12rem;
     animation: fadeIn .9s ease;
     border-radius: 10px;
+    cursor: pointer;
      
 }
 @keyframes fadeIn {
@@ -25,14 +26,12 @@
     background: transparent;
     cursor: pointer;
   }
-  .dropdownmenu_btn img{
-    /* margin-left: .5em;
-    background: transparent; */
-  }
+ 
  .delete{
   color: #ea5555;
  }
  .dropdownbtn{
   background-color: transparent;
   border: none;
+  cursor: pointer;
  }

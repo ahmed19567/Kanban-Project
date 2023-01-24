@@ -18,10 +18,9 @@ interface SideNavProps {
 function SideNav(props: SideNavProps) {
 	const { theme, toggleTheme } = props;
 	const [hideSideNav, setHideSideNav] = useState(true);
-	const [active, setActive] = useState(0);
+	const [active, setActive] = useState("");
 	const board = useSelector((state: RootState) => state.data.data);
-	const tab = useSelector((state: RootState) => state.tabs);
-	const modal = useSelector((state: RootState) => state.modal.moduleType);
+	// const modal = useSelector((state: RootState) => state.modal.moduleType);
 	const dispatch = useDispatch();
 
 	function hideSide() {
@@ -30,13 +29,15 @@ function SideNav(props: SideNavProps) {
 
 	function changeTab(tab: string, index: number) {
 		dispatch(setTab(tab));
-		setActive(index);
 	}
 	function handleOpenModal() {
 		dispatch(openModal({ moduleType: "AddBoard" }));
 	}
 	function handleDelete() {
 		dispatch(openModal({ moduleType: "DeleteBoard" }));
+	}
+	function changeActive(val: string) {
+		setActive(val);
 	}
 	return (
 		<div className="sidenav ">
@@ -45,15 +46,13 @@ function SideNav(props: SideNavProps) {
 				<div className="side_nav_container">
 					{board.map((value, index) => (
 						<>
-							<Button
-								className={`sidenav_btn `}
-								key={value.name}
-								onClick={() => changeTab(value.name, index)}
-								defaultTab={active}
-							>
-								<img src={boardIcon} alt="" className="board_icon" />
-								<Tab name={value.name} defaultTab={index} />
-							</Button>
+							<Tab
+								name={value.name}
+								defaultTab={value.name}
+								onClick={() => {
+									changeTab(value.name, index);
+								}}
+							/>
 						</>
 					))}
 				</div>
@@ -73,8 +72,7 @@ function SideNav(props: SideNavProps) {
 				<div className="sidenav_theme_mode">
 					{darkTheme}
 					<button className="toggle_theme">
-						<input type="checkbox" className="toggle_ball" id="checkbox" />
-						<label htmlFor=""></label>
+						<span className="themeball"></span>
 					</button>
 					{lightTheme}
 				</div>

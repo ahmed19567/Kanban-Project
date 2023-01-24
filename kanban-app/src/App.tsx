@@ -13,13 +13,10 @@ import data from "./Data/data.json";
 import Input from "./Component/ReusableComponents/Input/Input";
 import "./App.css";
 import ScrollContainer from "react-indiana-drag-scroll";
-import ViewTask from "./Component/Modal/ViewTask/ViewTask";
-import DropDown from "./Component/ReusableComponents/DropDown/DropDown";
-import EditTask from "./Component/Modal/EditTask/EditTask";
-import AddNewTask from "./Component/Modal/AddNewTask/AddNewTask";
-// import AddBoard from "./Component/Modal/AddBoard/AddBoard";
-// import AddNewColumn from "./Component/Modal/AddNewColumn/AddNewColumn";
-// import DeleteBoard from "./Component/Modal/DeleteBoard/DeleteBoard";
+// import ViewTask from "./Component/Modal/ViewTask/ViewTask";
+// import DropDown from "./Component/ReusableComponents/DropDown/DropDown";
+// import EditTask from "./Component/Modal/EditTask/EditTask";
+// import AddNewTask from "./Component/Modal/AddNewTask/AddNewTask";
 
 function App() {
 	const [datas, setDatas] = useState(data);

@@ -5,7 +5,7 @@ import { RootState } from "../../../Store";
 import { useForm, useFieldArray } from "react-hook-form";
 import { module, task } from "../../../Interface/Interface";
 import { verticalellipsis } from "../../../Icons/Icon";
-import "./viewtask.css";
+import "./viewtask.scss";
 import { openModal } from "../../../Features/ModalSlice";
 import { setBoardStatus } from "../../../Features/DataSlice";
 
@@ -18,25 +18,29 @@ function ViewTask(props: module) {
 		dispatch(setBoardStatus(tasks.status));
 	}, []);
 
+	console.log(tasks);
+
 	return (
 		<Modal>
 			<div className="viewtask">
 				<div className="viewtask_topwrapper">
-					<p>{tasks.title} </p>
+					<h2>{tasks.title} </h2>
+
 					<button
 						onClick={() => {
 							dispatch(openModal({ moduleType: "EditTask" }));
 						}}
+						className="edittask_btn"
 					>
 						{verticalellipsis}
 					</button>
 				</div>
 				<p>{tasks.description ? tasks.description : "No description"}</p>
 				<div className="viewtask_subtask">
-					<p className="viewtask_title">
+					<span className="viewtask_title">
 						Subtasks
 						{`(${completed.length}  of ${tasks.subtasks.length})`}
-					</p>
+					</span>
 				</div>
 			</div>
 		</Modal>

@@ -8,20 +8,19 @@ button{
     display: flex;
     font-weight: 700;
     cursor: pointer;
-    /* margin-bottom: .75em; */
-    padding-top: .60em;
+     padding-top: .60em;
     padding-bottom: .60em;
-    /* background-color: #625fc7; */
-    padding-left: 2em;
+     padding-left: 2em;
     border-radius: 0 50px 50px 0;
-    /* color: white; */
-    color: #828fa3;
+     color: #828fa3;
     word-break: break-word;
     word-spacing: 1px;
     letter-spacing: .5px;
     line-height: 1.5; 
     margin-right: 1.5em;
-}
+ }
+ 
+
 .sidenav_btn:hover{
     background-color: #a8a4ff;
     color: #fff;

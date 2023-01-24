@@ -2,11 +2,12 @@ import React from "react";
 import { columnProps } from "../../Interface/Interface";
 import { task } from "../../Interface/Interface";
 import Card from "./Card";
+
 function Column(props: columnProps) {
 	return (
 		<div className="column">
 			<div className="column_title_div">
-				<span className={`ballcolor`}></span>
+				<span className={`ballcolor ball${props.index}`}></span>
 				<p className="props_title">{props.columnData.name}</p>
 			</div>
 			{props.columnData.tasks.map((data: task) => (

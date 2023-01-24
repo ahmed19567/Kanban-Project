@@ -4,7 +4,9 @@ import { RootState } from "../../../Store";
 import { useForm, useFieldArray } from "react-hook-form";
 import { board, column } from "../../../Interface/Interface";
 import { addColumn } from "../../../Features/DataSlice";
-import "./column.css";
+import { crossIcon } from "../../../Icons/Icon";
+
+import "./column.scss";
 
 import Modal from "../../ReusableComponents/Modal/Modal";
 function AddNewColumn() {
@@ -48,21 +50,29 @@ function AddNewColumn() {
 				onSubmit={handleSubmit(submitData)}
 			>
 				<h2>Add New Column</h2>
-				<div className="cash">
+				<div className="addnewcolumn_div">
 					<label htmlFor="name">
 						<p>Name</p>
-						<input {...register("name")} className="column_name" />
+						<input
+							{...register("name")}
+							disabled={true}
+							className="column_name"
+						/>
 					</label>
 
 					{fields.map((x, index) => (
-						<div className="sass">
+						<div className="status_column">
 							<input
 								type="text"
 								{...register(`columns.${index}.name`)}
 								className="column_name"
 							/>
+							<div className="" onClick={() => remove(index)}>
+								{crossIcon}
+							</div>
 						</div>
 					))}
+
 					<button className="addnewcolumn" onClick={addNewColumn}>
 						+ Add New Column
 					</button>

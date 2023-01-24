@@ -13,7 +13,6 @@ function Header() {
 
 	function handleModal() {
 		dispatch(openModal({ moduleType: "DeleteBoard" }));
-		// dispatch(closeModal());
 	}
 	function editModal() {
 		dispatch(openModal({ moduleType: "AddColumn" }));
@@ -26,7 +25,6 @@ function Header() {
 	return (
 		<header className="header">
 			<div className="header_div_one">
-				{/* <img src={icon} alt="" /> */}
 				<picture className="=header_logo">
 					<img src={title} alt="" />
 				</picture>
@@ -38,7 +36,6 @@ function Header() {
 						<button className="launch_button" onClick={addTask}>
 							&nbsp; + Add New Task
 						</button>
-						{/* <div> */}
 						<DropDown
 							className="svg_icon"
 							title="Board"
@@ -47,7 +44,6 @@ function Header() {
 						>
 							{verticalellipsis}
 						</DropDown>
-						{/* </div> */}
 					</div>
 				</div>
 			</div>

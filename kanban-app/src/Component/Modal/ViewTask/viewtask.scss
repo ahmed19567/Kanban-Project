@@ -1,0 +1,27 @@
+.viewtask{
+    background-color: #2b2c37;
+    width: 350px;
+    padding: 1rem;
+    p{
+        font-size: .75;
+        font-weight: 400;
+        line-height: 1.3;
+        color: #828fa3;
+        margin-bottom: 1em;
+    }
+}
+
+.viewtask_topwrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h2{
+        font-size: 1em;
+        font-weight: 700;
+    }
+    margin-bottom: 1em;
+}
+.edittask_btn{
+    background-color: transparent;
+    border: none;
+}

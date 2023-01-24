@@ -13,12 +13,8 @@ interface ButtonProps {
 }
 
 function Button(props: ButtonProps) {
-	console.log(props.defaultTab);
 	return (
-		<button
-			onClick={props.onClick}
-			className={`${props.className} ${props.defaultTab && "active"}`}
-		>
+		<button onClick={props.onClick} className={`${props.className}`}>
 			{props.children}
 		</button>
 	);
