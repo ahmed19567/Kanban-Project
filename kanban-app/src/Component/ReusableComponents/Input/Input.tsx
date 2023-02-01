@@ -1,21 +1,24 @@
 import React from "react";
-import "./input.css";
+import "./input.scss";
 
 type input = {
 	task: string;
 	checked: boolean;
+	changeStatus: () => void;
 };
 function Input(props: input) {
-	const { task, checked } = props;
+	const { task, checked, changeStatus } = props;
+
 	return (
-		<label className="checkbox">
+		<label className={`checkBox ${checked}`}>
 			<input
 				type="checkbox"
 				checked={checked}
+				onClick={changeStatus}
 				id="checkbox"
 				className="checkbox_prototype"
 			/>
-			<p>{props.task}</p>
+			{task}
 		</label>
 	);
 }

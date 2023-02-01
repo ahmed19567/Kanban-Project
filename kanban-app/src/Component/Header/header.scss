@@ -11,16 +11,31 @@
 
   .header{
     height: 6rem;
-    background-color: var(--main-bg-color);
     display: flex;
+    border:  .3px solid var(--color-borderLine);
+    &.dark{
+        background-color: var(--main-bg-color);
+        color: white;
+
+    }
+    &.light{
+        background-color: white;
+        p{
+            color: black;
+        }
+        h2{
+            color: black;
+        }
+    }
     
   }
+ 
   .header_div_one{
     width: 20%;
-    border-right: 1px solid var(--color-borderLine);  
+    border-right: .3px solid var(--color-borderLine);  
     display: flex;
     align-items: center;
-    border-bottom: 1px solid var(--color-borderLine);  
+    border-bottom: .3px solid var(--color-borderLine);  
      cursor: pointer;
      padding: 2rem;
      }

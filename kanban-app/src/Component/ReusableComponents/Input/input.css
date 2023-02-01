@@ -1,7 +1,0 @@
-input[type=checkbox]{
-    text-decoration: line-through;
-}
-.checkbox_prototype:checked + p{
-    text-decoration: line-through;
-
-}

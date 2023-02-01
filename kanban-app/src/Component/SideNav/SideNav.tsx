@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { store, RootState } from "../../Store";
+import { RootState } from "../../Store";
 import { setTab } from "../../Features/TabSlice";
 import Button from "../ReusableComponents/Button/Button";
 import { openModal } from "../../Features/ModalSlice";
-import boardIcon from "../../assets/icon-board.svg";
 import { lightTheme, darkTheme } from "../../Icons/Icon";
 import Tab from "./Tab";
 import "./sidenav.scss";
+import { setStatus } from "../../Features/DataSlice";
 interface SideNavProps {
 	theme: string;
 	toggleTheme: () => void;
@@ -20,15 +20,19 @@ function SideNav(props: SideNavProps) {
 	const [hideSideNav, setHideSideNav] = useState(true);
 	const [active, setActive] = useState("");
 	const board = useSelector((state: RootState) => state.data.data);
-	// const modal = useSelector((state: RootState) => state.modal.moduleType);
+	const tab = useSelector((state: RootState) => state.tabs);
 	const dispatch = useDispatch();
 
 	function hideSide() {
 		setHideSideNav(!hideSideNav);
 	}
 
+	const findColumn = board.find((column) => column.name === tab);
+	const task = findColumn?.columns.map((x) => x.name);
+
 	function changeTab(tab: string, index: number) {
 		dispatch(setTab(tab));
+		dispatch(setStatus(tab));
 	}
 	function handleOpenModal() {
 		dispatch(openModal({ moduleType: "AddBoard" }));
@@ -39,8 +43,9 @@ function SideNav(props: SideNavProps) {
 	function changeActive(val: string) {
 		setActive(val);
 	}
+
 	return (
-		<div className="sidenav ">
+		<div className={`sidenav ${theme} ${hideSideNav}`}>
 			<div className="sidenav_top">
 				<h4>All boards ( {board.length} )</h4>
 				<div className="side_nav_container">
@@ -52,6 +57,7 @@ function SideNav(props: SideNavProps) {
 								onClick={() => {
 									changeTab(value.name, index);
 								}}
+								key={index}
 							/>
 						</>
 					))}
@@ -68,15 +74,19 @@ function SideNav(props: SideNavProps) {
 				</Button>
 			</div>
 			<div className="sidenav_bottom">
-				{/* theme start */}
-				<div className="sidenav_theme_mode">
+				<div className={`sidenav_theme_mode ${theme}`}>
 					{darkTheme}
-					<button className="toggle_theme">
-						<span className="themeball"></span>
-					</button>
+					<input
+						className="react-switch-checkbox"
+						id={`react-switch-new`}
+						type="checkbox"
+						onClick={props.toggleTheme}
+					/>
+					<label className="react-switch-label" htmlFor={`react-switch-new`}>
+						<span className={`react-switch-button`} />
+					</label>
 					{lightTheme}
 				</div>
-				{/* break */}
 				<button className="sidenav_hide_sidebar">
 					<svg width="18" height="16" xmlns="http://www.w3.org/2000/svg">
 						<path
@@ -84,7 +94,7 @@ function SideNav(props: SideNavProps) {
 							fill="#828FA3"
 						/>
 					</svg>
-					<p> Hide Sidebar</p>
+					<p onClick={hideSide}> Hide Sidebar</p>
 				</button>
 			</div>
 		</div>

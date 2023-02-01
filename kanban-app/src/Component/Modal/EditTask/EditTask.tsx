@@ -45,8 +45,7 @@ function EditTask() {
 	function submit(data: any) {
 		dispatch(editTask({ board, newTask: data, status, title }));
 	}
-
-	const colums = data.find((x) => x.name === board);
+	console.log(title);
 
 	return (
 		<Modal>
@@ -95,7 +94,11 @@ function EditTask() {
 						Add New Task
 					</button>
 
-					<button className="save_changed" type="submit">
+					<button
+						className="save_changed"
+						type="submit"
+						onClick={() => dispatch(closeModal)}
+					>
 						Save Changes
 					</button>
 				</div>

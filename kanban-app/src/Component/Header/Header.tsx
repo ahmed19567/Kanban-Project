@@ -1,5 +1,6 @@
 import icon from "../../assets/logo-mobile.svg";
-import title from "../../assets/logo-light.svg";
+import whiteLogo from "../../assets/logo-light.svg";
+import blackLogo from "../../assets/logo-dark.svg";
 import { verticalellipsis } from "../../Icons/Icon";
 import { useSelector, useDispatch } from "react-redux";
 import DropDown from "../ReusableComponents/DropDown/DropDown";
@@ -9,6 +10,7 @@ import { RootState } from "../../Store";
 import "./header.scss";
 function Header() {
 	const tab = useSelector((state: RootState) => state.tabs);
+	const theme = useSelector((state: RootState) => state.data.colorTheme);
 	const dispatch = useDispatch();
 
 	function handleModal() {
@@ -23,15 +25,21 @@ function Header() {
 	}
 
 	return (
-		<header className="header">
+		<header className={`header ${theme}`}>
 			<div className="header_div_one">
-				<picture className="=header_logo">
-					<img src={title} alt="" />
-				</picture>
+				{theme === "dark" ? (
+					<picture className="=header_logo">
+						<img src={whiteLogo} alt="" />
+					</picture>
+				) : (
+					<picture className="=header_logo">
+						<img src={blackLogo} alt="" />
+					</picture>
+				)}
 			</div>
 			<div className="header_div_two">
 				<div className="launch">
-					<h3>{tab}</h3>
+					<h2>{tab}</h2>
 					<div className="launch_button_container">
 						<button className="launch_button" onClick={addTask}>
 							&nbsp; + Add New Task

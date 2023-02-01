@@ -5,7 +5,6 @@
   box-sizing: border-box;
 }
 .sidenav{
-    /* width: 18.8rem; */
     width: 20%;
     background-color: #2b2c37;
     height: 100%;
@@ -16,8 +15,14 @@
    padding-top: 1rem;
    height: 100;
    justify-content: space-between;
-   /* justify-content: space-between; */
-    /* padding-left: 2em; */
+   border-right: .3px solid var(--color-borderLine);  
+
+  &.light{
+    background-color: white;
+  }
+  &.true{
+    // display: none;
+  }
     h4{
 
       color: #828fa3;
@@ -35,7 +40,6 @@
  
  
  .side_nav_container{
-  /* padding-left: 2em; */
   display: flex;
    flex-direction: column;
    
@@ -67,7 +71,12 @@
   column-gap: 1em;
   margin-left: 1em;
   width: 250px;
-  background-color: #20212c;
+  &.dark{
+    background-color: #20212c;
+
+  }
+  &.light{
+    background-color: #F4F7FD;}
    border-radius: 5px;
   height: 50px;
   margin-bottom: 1em;
@@ -111,58 +120,63 @@
       height: 0;
     }
   }
-   .slider{
-    position: absolute;
+  //  sdksdkjkdsj
+
+  .react-switch-checkbox {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+    margin-left: -1em;
+   }
+  
+  .react-switch-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-   }
-   .slider::before{
-    position: absolute;
-    content: "";
-    width: 20px;
-     height: 20px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-   }
-   input:checked + .slider {
-    background-color: #2196F3;
-  }
-  input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-  }
-  input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-  }
-  .slider.round {
-    border-radius: 34px;
+    width: 40px;
+    height: 20px;
+    background: #625fc7;
+    border-radius: 100px;
+    position: relative;
+    transition: background-color .2s;
   }
   
-  .slider.round:before {
+  .react-switch-label .react-switch-button {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
+    transition: 0.2s;
+    background: #fff;
+    box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
   }
- 
-// .toggle_ball::before{
-//   content: "";
-//   width: 20px;
-//   height: 20px;
-//   border-radius: 50%;
-//   background: #fff;
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   transition: 0.5s;
-// }
+  
+  .react-switch-checkbox:checked + .react-switch-label .react-switch-button {
+    left: calc(100% - 0px);
+    transform: translateX(-100%);
+  }
+  
+  .react-switch-label:active .react-switch-button {
+    width: 20px;
+  }
+
+
+//  dkskdskd
+.toggle_ball::before{
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: 0.5s;
+}
 
 .sidenav_hide_sidebar{
   display: flex;

@@ -1,5 +1,6 @@
 body{
     font-family: 'Plus Jakarta Sans', sans-serif;
+  
 }
 *, *::before, *::after {
     box-sizing: border-box;
@@ -52,9 +53,7 @@ body{
     isolation: isolate;
   }
 
-  .innercard{
-    background-color: lightyellow;
-  }
+  
  .btn{
   background-color: black;
  }
@@ -66,7 +65,5 @@ body{
  .main{
   display: flex;
   height: calc(100vh - 6rem);
-     /* align-items: center; */
- }
-
+  }
  

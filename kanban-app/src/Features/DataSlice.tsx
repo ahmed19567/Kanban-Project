@@ -1,17 +1,17 @@
 import { createSlice, PayloadAction, current } from "@reduxjs/toolkit";
 import { board, task } from "../Interface/Interface";
-import { column } from "../Interface/Interface";
 import { produce } from "immer";
-import { stat } from "fs";
 
 export type boardSlice = {
 	data: board[];
-	status: "";
+	status: string[];
+	currentStatus: string;
 	colorTheme: "dark" | "light";
 };
 const initialState: boardSlice = {
 	data: [],
-	status: "",
+	status: [],
+	currentStatus: " ",
 	colorTheme: "dark",
 };
 
@@ -25,12 +25,11 @@ const dataSlice = createSlice({
 		setTheme: (state, action: PayloadAction<any>) => {
 			return { ...state, colorTheme: action.payload };
 		},
-		setBoardStatus: (state, action: PayloadAction<any>) => {
-			return { ...state, status: action.payload };
-		},
-		getData: (state, action) => {
+
+		getData: (state, action: PayloadAction<any>) => {
 			return { ...state, data: action.payload };
 		},
+
 		getId: (state, action: PayloadAction<any>) => {
 			const hold = state.data.find((x) => x.name === action.payload);
 		},
@@ -72,7 +71,6 @@ const dataSlice = createSlice({
 		editTask: (state, action: PayloadAction<any>) => {
 			const { board, status, newTask, title } = action.payload;
 			const datas = current(state.data);
-			const currentBoard = datas.find((x) => x.name === board);
 			const boardIndex = datas.findIndex((x) => x.name === board);
 
 			const columnIndex = datas[boardIndex].columns.findIndex(
@@ -81,7 +79,7 @@ const dataSlice = createSlice({
 			const taskIndex = datas[boardIndex].columns[columnIndex].tasks.findIndex(
 				(v) => v.title === title
 			);
-			const newState = produce(datas, (draft) => {
+			const newState: any = produce(datas, (draft) => {
 				draft[boardIndex].columns[columnIndex].tasks[taskIndex] = newTask;
 			});
 			return { ...state, data: newState };
@@ -97,16 +95,27 @@ const dataSlice = createSlice({
 		},
 		addTask: (state, action: PayloadAction<any>) => {
 			const { board, status, task } = action.payload;
-			const data = current(state.data);
-			const boardIndex = data.findIndex((x) => x.name === board);
-			const columnIndex = data[boardIndex].columns.findIndex(
+			const datas = current(state.data);
+			const boardIndex = datas.findIndex((x) => x.name === board);
+			const columnIndex = datas[boardIndex].columns.findIndex(
 				(x) => x.name === status
 			);
 
-			const newState = produce(data, (draft: any) => {
+			const newState = produce(datas, (draft: any) => {
 				draft[boardIndex].columns[columnIndex].tasks.push(task);
 			});
 			return { ...state, data: newState };
+		},
+		setStatus: (state, action: PayloadAction<any>) => {
+			const board = action.payload;
+			const data = current(state.data);
+
+			const boardIndex = data.findIndex((x) => x.name === board);
+			const columnStatus = data[boardIndex].columns.map((x) => x.name);
+			return { ...state, status: columnStatus };
+		},
+		setCurrentStatus: (state, action: PayloadAction<any>) => {
+			return { ...state, currentStatus: action.payload };
 		},
 	},
 });
@@ -118,8 +127,9 @@ export const {
 	addColumn,
 	deleteBoard,
 	editTask,
-	setBoardStatus,
 	addTask,
 	setTheme,
+	setStatus,
+	setCurrentStatus,
 } = dataSlice.actions;
 export default dataSlice.reducer;

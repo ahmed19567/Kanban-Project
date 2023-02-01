@@ -2,16 +2,21 @@ import React from "react";
 import { nanoid } from "@reduxjs/toolkit";
 import { useSelector, useDispatch } from "react-redux";
 import { task } from "../../../Interface/Interface";
-import { useForm, useFieldArray, Controller } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import Modal from "../../ReusableComponents/Modal/Modal";
-import { addTask } from "../../../Features/DataSlice";
+import { addTask, setCurrentStatus } from "../../../Features/DataSlice";
 import SelectDropDown from "../../ReusableComponents/Select/SelectDropDown";
 import { crossIcon } from "../../../Icons/Icon";
 import "./addtask.scss";
 import { RootState } from "../../../Store";
+import { closeModal } from "../../../Features/ModalSlice";
 function AddNewTask() {
 	const data = useSelector((state: RootState) => state.data.data);
+	const boardData = useSelector((state: RootState) => state.data);
 	const boardStatus = useSelector((state: RootState) => state.data.status);
+	const status = useSelector((state: RootState) => state.data.status);
+	const currentStatus = boardStatus[0];
+
 	const board = useSelector((state: RootState) => state.tabs);
 	const dispatch = useDispatch();
 	const {
@@ -24,31 +29,33 @@ function AddNewTask() {
 			id: nanoid(),
 			title: "",
 			description: "",
-			status: "",
+			status: currentStatus,
 			subtasks: [{ title: "", isCompleted: false }],
 		},
 	});
 
 	const currentBoard = data.filter((val) => val.name === board);
-	const task = currentBoard.map((val) => val.columns.map((x) => x.name));
 
 	const { fields, append, remove } = useFieldArray({
 		name: "subtasks",
 		control,
 	});
 	function addNewTask() {
-		if (fields.length < 5) return append({ title: "", isCompleted: false });
+		if (fields.length < 10) return append({ title: "", isCompleted: false });
 		else return;
 	}
 
+	function submitForm(data: task) {
+		dispatch(addTask({ board, status: currentStatus, task: data }));
+		dispatch(closeModal());
+	}
+
+	const changeStatusName = (item: number) => {
+		dispatch(setCurrentStatus(item));
+	};
 	return (
 		<Modal>
-			<form
-				className="addnewtask"
-				onSubmit={handleSubmit((data) => {
-					dispatch(addTask({ board, status: boardStatus, task: data }));
-				})}
-			>
+			<form className="addnewtask" onSubmit={handleSubmit(submitForm)}>
 				<h2>Add New Task</h2>
 				<div className="addnewtask_wrapper">
 					<p>Title</p>
@@ -77,7 +84,7 @@ function AddNewTask() {
 							</button>
 						</div>
 					))}
-					{fields.length < 5 && (
+					{fields.length < 10 && (
 						<button onClick={addNewTask} type="button" className="addtask_btn">
 							Add New Task
 						</button>
@@ -85,15 +92,15 @@ function AddNewTask() {
 				</div>
 				<div className="addnewtask_wrapper">
 					<p>Status</p>
-					<label htmlFor="">
-						<input {...register("status")} />
-					</label>
+					<SelectDropDown
+						status={status}
+						currentStatus={currentStatus ? currentStatus : status[0]}
+						SetCurrentStatus={changeStatusName}
+					/>
 				</div>
 				<button type="submit" className="savetask_btn">
 					Submit
 				</button>
-
-				{/* <SelectDropDown status={task} /> */}
 			</form>
 		</Modal>
 	);

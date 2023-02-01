@@ -6,12 +6,13 @@ import { RootState } from "../../Store";
 
 function Card(props: task) {
 	const completed = props.subtasks.filter((x) => x.isCompleted === true);
+	const theme = useSelector((state: RootState) => state.data.colorTheme);
 	const dis = useSelector((state: RootState) => state.modal.tasks);
 	const dispatch = useDispatch();
 
 	return (
 		<div
-			className="card"
+			className={`card ${theme}`}
 			onClick={() =>
 				dispatch(openModal({ moduleType: "ViewTask", tasks: { ...props } }))
 			}

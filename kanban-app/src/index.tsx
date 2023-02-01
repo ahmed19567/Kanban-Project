@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(
 store.subscribe(
 	debounce(() => {
 		saveState(store.getState());
-	}, 1000)
+	}, 500)
 );
 
 root.render(
