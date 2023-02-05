@@ -1,5 +1,5 @@
 const KEY = "taskmanagment";
-export function loadState() {
+export  function loadState() {
   try {
     const serializedState = localStorage.getItem(KEY);
     if (!serializedState) return undefined;
@@ -9,7 +9,7 @@ export function loadState() {
   }
 }
 
-export async function saveState(state: any) {
+export function saveState(state: any) {
   try {
     const serializedState = JSON.stringify(state);
     localStorage.setItem(KEY, serializedState);

@@ -1,40 +1,37 @@
-import React from "react";
 import { nanoid } from "@reduxjs/toolkit";
 import { useSelector, useDispatch } from "react-redux";
 import { task } from "../../../Interface/Interface";
 import { useForm, useFieldArray } from "react-hook-form";
 import Modal from "../../ReusableComponents/Modal/Modal";
-import { addTask, setCurrentStatus } from "../../../Features/DataSlice";
+import { addTask } from "../../../Features/DataSlice";
 import SelectDropDown from "../../ReusableComponents/Select/SelectDropDown";
 import { crossIcon } from "../../../Icons/Icon";
 import "./addtask.scss";
 import { RootState } from "../../../Store";
 import { closeModal } from "../../../Features/ModalSlice";
 function AddNewTask() {
-	const data = useSelector((state: RootState) => state.data.data);
-	const boardData = useSelector((state: RootState) => state.data);
-	const boardStatus = useSelector((state: RootState) => state.data.status);
 	const status = useSelector((state: RootState) => state.data.status);
-	const currentStatus = boardStatus[0];
-
 	const board = useSelector((state: RootState) => state.tabs);
 	const dispatch = useDispatch();
+	console.log(status);
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
+		getValues,
+		setValue,
 		control,
 	} = useForm<task>({
 		defaultValues: {
 			id: nanoid(),
 			title: "",
 			description: "",
-			status: currentStatus,
+			status: status[0],
 			subtasks: [{ title: "", isCompleted: false }],
 		},
 	});
 
-	const currentBoard = data.filter((val) => val.name === board);
+	const currentStatus = getValues("status");
 
 	const { fields, append, remove } = useFieldArray({
 		name: "subtasks",
@@ -50,8 +47,8 @@ function AddNewTask() {
 		dispatch(closeModal());
 	}
 
-	const changeStatusName = (item: number) => {
-		dispatch(setCurrentStatus(item));
+	const onSetCurrentStatus = (value: string) => {
+		setValue("status", value, { shouldValidate: true });
 	};
 	return (
 		<Modal>
@@ -94,8 +91,8 @@ function AddNewTask() {
 					<p>Status</p>
 					<SelectDropDown
 						status={status}
-						currentStatus={currentStatus ? currentStatus : status[0]}
-						SetCurrentStatus={changeStatusName}
+						currentStatus={currentStatus}
+						onSetCurrentStatus={onSetCurrentStatus}
 					/>
 				</div>
 				<button type="submit" className="savetask_btn">

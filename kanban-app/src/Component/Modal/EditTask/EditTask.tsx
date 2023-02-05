@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { nanoid } from "@reduxjs/toolkit";
 import { useSelector, useDispatch } from "react-redux";
 import { task, subtask } from "../../../Interface/Interface";
@@ -44,16 +44,12 @@ function EditTask() {
 	}
 	function submit(data: any) {
 		dispatch(editTask({ board, newTask: data, status, title }));
+		dispatch(closeModal());
 	}
-	console.log(title);
 
 	return (
 		<Modal>
-			<form
-				action=""
-				className="edittask"
-				onClick={handleSubmit((data) => submit(data))}
-			>
+			<form className="edittask" onClick={handleSubmit((data) => submit(data))}>
 				<h2>Edit task</h2>
 				<div className="edittask_wrapper">
 					<p>Title</p>
@@ -94,13 +90,7 @@ function EditTask() {
 						Add New Task
 					</button>
 
-					<button
-						className="save_changed"
-						type="submit"
-						onClick={() => dispatch(closeModal)}
-					>
-						Save Changes
-					</button>
+					<button className="save_changed">Save Changes</button>
 				</div>
 			</form>
 		</Modal>

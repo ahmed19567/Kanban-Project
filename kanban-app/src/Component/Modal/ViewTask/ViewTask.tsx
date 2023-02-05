@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "../../ReusableComponents/Modal/Modal";
 import { useSelector, useDispatch } from "react-redux";
 import Input from "../../ReusableComponents/Input/Input";
@@ -6,12 +6,16 @@ import { module } from "../../../Interface/Interface";
 import SelectDropDown from "../../ReusableComponents/Select/SelectDropDown";
 import { verticalellipsis } from "../../../Icons/Icon";
 import "./viewtask.scss";
-import { openModal } from "../../../Features/ModalSlice";
+import { closeModal, openModal } from "../../../Features/ModalSlice";
 import { RootState } from "../../../Store";
+import { editTask, deleteTask } from "../../../Features/DataSlice";
+
+import DropDown from "../../ReusableComponents/DropDown/DropDown";
 
 function ViewTask(props: module) {
 	const { tasks } = props;
 	const boardStatus = useSelector((state: RootState) => state.data.status);
+	const boardName = useSelector((state: RootState) => state.tabs);
 	const dispatch = useDispatch();
 	const { id, title, description, status, subtasks } = tasks;
 
@@ -33,7 +37,36 @@ function ViewTask(props: module) {
 		setValue({ ...value, subtasks: subTask });
 	};
 
-	const changeStatus = () => {};
+	const changeStatus = (item: string) => {
+		setValue({ ...value, status: item });
+		dispatch(
+			editTask({
+				board: boardName,
+				status: value.status,
+				title: value.title,
+				newTask: value,
+			})
+		);
+	};
+	useEffect(() => {
+		dispatch(
+			editTask({
+				board: boardName,
+				status: value.status,
+				title: value.title,
+				newTask: value,
+				oldTask: tasks,
+			})
+		);
+	}, [value.status]);
+	function handleEdit() {
+		dispatch(openModal({ moduleType: "EditTask" }));
+		dispatch(closeModal());
+	}
+	function onDelete() {
+		dispatch(deleteTask({ board: boardName, status, title }));
+		dispatch(closeModal());
+	}
 
 	return (
 		<Modal>
@@ -41,14 +74,14 @@ function ViewTask(props: module) {
 				<div className="viewtask_topwrapper">
 					<h2>{tasks.title} </h2>
 
-					<button
-						onClick={() => {
-							dispatch(openModal({ moduleType: "EditTask" }));
-						}}
+					<DropDown
 						className="edittask_btn"
+						title="Task"
+						onEdit={handleEdit}
+						onDelete={onDelete}
 					>
 						{verticalellipsis}
-					</button>
+					</DropDown>
 				</div>
 				<p className="description">
 					{tasks.description ? tasks.description : "No description"}
@@ -74,8 +107,8 @@ function ViewTask(props: module) {
 					<p className="viewtask_p">Current Status</p>
 					<SelectDropDown
 						status={boardStatus}
-						currentStatus={status}
-						SetCurrentStatus={changeStatus}
+						currentStatus={value.status ? value.status : boardStatus[0]}
+						onSetCurrentStatus={changeStatus}
 					/>
 				</div>
 			</div>

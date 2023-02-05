@@ -7,6 +7,7 @@ import { store } from "./Store";
 import { Provider } from "react-redux";
 import { saveState } from "./Features/Browser-Storage";
 import { debounce } from "lodash";
+import { throttle } from "lodash";
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement
@@ -15,7 +16,7 @@ const root = ReactDOM.createRoot(
 store.subscribe(
 	debounce(() => {
 		saveState(store.getState());
-	}, 500)
+	}, 1000)
 );
 
 root.render(

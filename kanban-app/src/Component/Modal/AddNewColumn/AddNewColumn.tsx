@@ -9,6 +9,7 @@ import { crossIcon } from "../../../Icons/Icon";
 import "./column.scss";
 
 import Modal from "../../ReusableComponents/Modal/Modal";
+import { closeModal } from "../../../Features/ModalSlice";
 function AddNewColumn() {
 	const data = useSelector((state: RootState) => state.data.data);
 	const boardValue = useSelector((state: RootState) => state.tabs);
@@ -42,7 +43,9 @@ function AddNewColumn() {
 
 	function submitData(data: board) {
 		dispatch(addColumn({ board: boardValue, newColumn: data }));
+		dispatch(closeModal());
 	}
+
 	return (
 		<Modal>
 			<form
@@ -73,7 +76,7 @@ function AddNewColumn() {
 						</div>
 					))}
 
-					<button className="addnewcolumn" onClick={addNewColumn}>
+					<button type="button" className="addnewcolumn" onClick={addNewColumn}>
 						+ Add New Column
 					</button>
 					<button className="savechanges">Save Changes</button>
