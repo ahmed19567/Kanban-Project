@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import modalSlice from "./Features/ModalSlice";
 import dataSlice from "./Features/DataSlice";
 import tabSlice from "./Features/TabSlice";
+import sideBarSlice from "./Features/SideBarSlice";
 import { loadState } from "./Features/Browser-Storage";
 
 export const store = configureStore({
@@ -9,6 +10,7 @@ export const store = configureStore({
 		modal: modalSlice,
 		data: dataSlice,
 		tabs: tabSlice,
+		sideBar: sideBarSlice,
 	},
 	preloadedState: loadState(),
 });

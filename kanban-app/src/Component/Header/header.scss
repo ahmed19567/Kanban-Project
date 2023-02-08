@@ -13,6 +13,7 @@
     height: 6rem;
     display: flex;
     border:  .3px solid var(--color-borderLine);
+    width: 100%;
     &.dark{
         background-color: var(--main-bg-color);
         color: white;

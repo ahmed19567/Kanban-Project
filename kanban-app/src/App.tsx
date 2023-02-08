@@ -1,56 +1,42 @@
 import { useEffect, useState } from "react";
 import Header from "./Component/Header/Header";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState, store } from "./Store";
+import { RootState } from "./Store";
 import { addData } from "./Features/DataSlice";
 import { loadState } from "./Features/Browser-Storage";
-import { setTheme } from "./Features/DataSlice";
-import SideNav from "./Component/SideNav/SideNav";
-import Board from "./Component/Board/Board";
 import Modal from "./Component/Modal/Modal";
+import Main from "./Component/Main";
 import data from "./Data/data.json";
+import DeleteBoard from "./Component/Modal/DeleteBoard/DeleteBoard";
 
 import "./App.scss";
 
 function App() {
-	const [datas] = useState(data);
+	const disPatch = useDispatch();
 
 	const theme = useSelector((state: RootState) => state.data.colorTheme);
-	const value = localStorage.getItem("taskmanagment");
-	const disPatch = useDispatch();
-	useEffect(() => {
-		// const persistData = loadState();
-		// const fetchData = async () => {
-		// 	try {
-		// 		const response = await import("./Data/data.json");
-		// 		const data = response.boards;
-		// 		disPatch(addData(data));
-		// 	} catch (err) {
-		// 		console.error(err);
-		// 	}
-		// };
-		// if (persistData) {
-		// 	disPatch(hydrate(persistData.data));
-		// }
-		// if (persistData && persistData.data.data.length === 0) {
-		// 	fetchData();
-		// }
-		disPatch(addData(datas.boards));
-	}, []);
 
-	function toggleColor() {
-		if (theme === "dark") disPatch(setTheme("light"));
-		else if (theme === "light") disPatch(setTheme("dark"));
-	}
+	useEffect(() => {
+		const persistData = loadState();
+		const fetchData = async () => {
+			try {
+				const response = await import("./Data/data.json");
+				const data = response.boards;
+				disPatch(addData(data));
+			} catch (err) {
+				console.error(err);
+			}
+		};
+
+		if (persistData && persistData.data.data.length === 0) {
+			fetchData();
+		}
+	}, []);
 
 	return (
 		<div className={`App ${theme}`}>
 			<Header />
-			<main className="main">
-				<SideNav toggleTheme={toggleColor} theme={theme} />
-				<Board />
-			</main>
-
+			<Main />
 			<Modal />
 		</div>
 	);

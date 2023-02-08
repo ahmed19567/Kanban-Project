@@ -11,6 +11,9 @@
        line-height: 1;
        margin-bottom: 1em;
     }
+    p{
+      margin-bottom: .5em;
+    }
     
        
 }
@@ -39,16 +42,30 @@
         margin-bottom: 1em;
         border: 2px solid rgba(130,143,163,.4);
         color: #fff;
+        padding: .5em 1em;
     }
     textarea:focus{
         border: 1px solid transparent;
         outline: 2px solid rgb(94,92,170);
 
     }
+    p{
+      font-size: .85em;
+      font-weight: 700;
+    }
 }
 .addnewtaskprop{
     display: flex;
+    justify-content: center;
+    align-items: center;
     column-gap: .5rem;
+    font-size: 1em;
+    font-weight: 400;
+    line-height: 1.5;
+    button{
+      margin-bottom: .5em;
+      
+    }
  }
  
  .edittask_wrapper{

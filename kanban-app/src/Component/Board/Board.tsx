@@ -1,43 +1,58 @@
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../Store";
 import { column } from "../../Interface/Interface";
-import { editTask } from "../../Features/DataSlice";
 import { openModal } from "../../Features/ModalSlice";
+import { showSidebar } from "../../Features/SideBarSlice";
 import "./board.scss";
 import Column from "./Column";
-import { useEffect } from "react";
+import { hideSideBar } from "../../Icons/Icon";
 
 function Board() {
 	const dispatch = useDispatch();
 	const tab = useSelector((state: RootState) => state.tabs);
 	const data = useSelector((state: RootState) => state.data.data);
 	const theme = useSelector((state: RootState) => state.data.colorTheme);
-	const board = useSelector((state: RootState) => state.tabs);
-	const modalType = useSelector((state: RootState) => state.modal.moduleType);
-
-	const columnDatas = data.filter((x) => x.name === tab);
+	const hideSideNav = useSelector((state: RootState) => state.sideBar);
 	const findCurrentData = data.find((x) => x.name === tab);
 
 	const addColumn = () => {
 		dispatch(openModal({ moduleType: "AddColumn" }));
 	};
+	function showSideBar() {
+		dispatch(showSidebar());
+	}
 
 	return (
-		<div className={`board ${theme}`}>
+		<section
+			className={
+				hideSideNav
+					? `board board_not_full ${theme}`
+					: `board boardfull ${theme}`
+			}
+		>
 			{findCurrentData?.columns.map((columnData: column, index: number) => (
 				<>
 					<Column columnData={columnData} index={index} key={columnData.name} />
 				</>
 			))}
 			<div
-				className="colum_add_button"
+				className="column_add_button"
 				onClick={() => {
 					addColumn();
 				}}
 			>
 				+ New Column
 			</div>
-		</div>
+
+			{hideSideNav ? (
+				" "
+			) : (
+				<button onClick={showSideBar} className="showsideBar_btn">
+					<i>{hideSideBar}</i>
+				</button>
+			)}
+		</section>
 	);
 }
 

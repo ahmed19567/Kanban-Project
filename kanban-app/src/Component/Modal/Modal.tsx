@@ -9,6 +9,7 @@ import EditTask from "./EditTask/EditTask";
 import AddNewTask from "./AddNewTask/AddNewTask";
 function Modal() {
 	const modal = useSelector((state: RootState) => state.modal);
+
 	return (
 		<>
 			{modal.moduleType === "AddBoard" && <AddBoard />}

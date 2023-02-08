@@ -16,6 +16,7 @@ function ViewTask(props: module) {
 	const { tasks } = props;
 	const boardStatus = useSelector((state: RootState) => state.data.status);
 	const boardName = useSelector((state: RootState) => state.tabs);
+	const theme = useSelector((state: RootState) => state.data.colorTheme);
 	const dispatch = useDispatch();
 	const { id, title, description, status, subtasks } = tasks;
 
@@ -29,7 +30,7 @@ function ViewTask(props: module) {
 	const completed = value.subtasks.filter((x: any) => x.isCompleted === true);
 
 	const changeSubtaskCheck = (index: number) => {
-		const subTask = tasks.subtasks;
+		const subTask = value.subtasks.slice();
 		subTask[index] = {
 			...subTask[index],
 			isCompleted: !subTask[index].isCompleted,
@@ -59,9 +60,20 @@ function ViewTask(props: module) {
 			})
 		);
 	}, [value.status]);
+	useEffect(() => {
+		dispatch(
+			editTask({
+				board: boardName,
+				status: value.status,
+				title: value.title,
+				newTask: value,
+				oldTask: tasks,
+			})
+		);
+	}, [value.subtasks]);
+
 	function handleEdit() {
 		dispatch(openModal({ moduleType: "EditTask" }));
-		dispatch(closeModal());
 	}
 	function onDelete() {
 		dispatch(deleteTask({ board: boardName, status, title }));
@@ -70,7 +82,7 @@ function ViewTask(props: module) {
 
 	return (
 		<Modal>
-			<div className="viewtask">
+			<div className={`viewtask ${theme}`}>
 				<div className="viewtask_topwrapper">
 					<h2>{tasks.title} </h2>
 
@@ -96,9 +108,8 @@ function ViewTask(props: module) {
 							<Input
 								checked={x.isCompleted}
 								task={x.title}
-								changeStatus={() => {
-									changeSubtaskCheck(index);
-								}}
+								index={index}
+								changeStatus={changeSubtaskCheck}
 							/>
 						</>
 					))}

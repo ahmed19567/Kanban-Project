@@ -1,16 +1,41 @@
 .viewtask{
     background-color: #2b2c37;
-    width: 100%;
+     width: 100%;
      padding: 1rem;
-    p{
-        margin-bottom: 1em;
+    //  &.dark{
+    //     background-color: #2b2c37;
 
-     
-    }
+    //     p:not(.description){
+    //         color: white;
+    //     }
+    //     label{
+    //         background-color: #20212C;
+    //     }
+
+
+    //  }
+    //  &.light{
+
+    //     background-color: #fff;
+
+    //     p:not(.description){
+    //         color: #828fa3;
+    //     }
+    //     h2{
+    //         color: #000;
+    //     }
+    //     label{
+    //       background-color: #F4F7FD;
+         
+    //     }
+        
+      
+    //  }
     .description{
         color: #828fa3;   font-size: .75;
         font-weight: 400;
         line-height: 1.3;
+        margin-bottom: 1em;
      }
 }
 .viewtask_title{
@@ -20,6 +45,7 @@
 }
 
 .viewtask_topwrapper{
+    height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -45,9 +71,13 @@
      }
 }
 .viewtask_current_status{
+    display: flex;
+    flex-direction: column;
    .viewtask_p{
     font-size: .85em;
     font-weight: 700;
     margin-top: 1em;
-   }
+    margin-bottom: 1em;
+    }
+  
 }

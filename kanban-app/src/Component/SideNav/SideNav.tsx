@@ -5,27 +5,22 @@ import { setTab } from "../../Features/TabSlice";
 import Button from "../ReusableComponents/Button/Button";
 import { openModal } from "../../Features/ModalSlice";
 import { lightTheme, darkTheme } from "../../Icons/Icon";
+import { hideSidebar, showSidebar } from "../../Features/SideBarSlice";
 import Tab from "./Tab";
 import "./sidenav.scss";
 import { setStatus } from "../../Features/DataSlice";
 interface SideNavProps {
 	theme: string;
 	toggleTheme: () => void;
-	toggleOnHide?: () => void;
-	hideSideNav?: boolean;
-	setToggleNav?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 function SideNav(props: SideNavProps) {
-	const { theme, toggleTheme } = props;
-	const [hideSideNav, setHideSideNav] = useState(true);
-	const [active, setActive] = useState("");
-	const board = useSelector((state: RootState) => state.data.data);
-	const tab = useSelector((state: RootState) => state.tabs);
+	const [toggle, setToggle] = useState(false);
 	const dispatch = useDispatch();
 
-	function hideSide() {
-		setHideSideNav(!hideSideNav);
-	}
+	const { theme } = props;
+	const board = useSelector((state: RootState) => state.data.data);
+	const tab = useSelector((state: RootState) => state.tabs);
+	const hideSideNav = useSelector((state: RootState) => state.sideBar);
 
 	const findColumn = board.find((column) => column.name === tab);
 	const task = findColumn?.columns.map((x) => x.name);
@@ -37,15 +32,18 @@ function SideNav(props: SideNavProps) {
 	function handleOpenModal() {
 		dispatch(openModal({ moduleType: "AddBoard" }));
 	}
-	function handleDelete() {
-		dispatch(openModal({ moduleType: "DeleteBoard" }));
+
+	function hideSideBar() {
+		dispatch(hideSidebar());
 	}
-	function changeActive(val: string) {
-		setActive(val);
+
+	function toggleColor() {
+		if (theme === "dark") setToggle(false);
+		else setToggle(true);
 	}
 
 	return (
-		<div className={`sidenav ${theme} ${hideSideNav}`}>
+		<section className={`sidenav ${theme} ${hideSideNav}`}>
 			<div className="sidenav_top">
 				<h4>All boards ( {board.length} )</h4>
 				<div className="side_nav_container">
@@ -73,6 +71,7 @@ function SideNav(props: SideNavProps) {
 					<p onClick={handleOpenModal}>+ Create New Board</p>
 				</Button>
 			</div>
+			{/* theme box */}
 			<div className="sidenav_bottom">
 				<div className={`sidenav_theme_mode ${theme}`}>
 					{darkTheme}
@@ -81,6 +80,8 @@ function SideNav(props: SideNavProps) {
 						id={`react-switch-new`}
 						type="checkbox"
 						onClick={props.toggleTheme}
+						checked={theme === "dark" ? false : true}
+						onChange={toggleColor}
 					/>
 					<label className="react-switch-label" htmlFor={`react-switch-new`}>
 						<span className={`react-switch-button`} />
@@ -94,10 +95,10 @@ function SideNav(props: SideNavProps) {
 							fill="#828FA3"
 						/>
 					</svg>
-					<p onClick={hideSide}> Hide Sidebar</p>
+					<div onClick={hideSideBar}> Hide Sidebar</div>
 				</button>
 			</div>
-		</div>
+		</section>
 	);
 }
 

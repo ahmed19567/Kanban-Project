@@ -20,6 +20,7 @@ export interface task {
 export interface module {
 	moduleType: modalTypes;
 	tasks?: any;
+	modalName?: string;
 }
 export interface subtask {
 	title: string;

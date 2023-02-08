@@ -75,9 +75,8 @@ const dataSlice = createSlice({
 			const oldColumnIndex = datas[boardIndex].columns.findIndex(
 				(x) => x.name === oldTask.status
 			);
-
 			const newColumnIndex = datas[boardIndex].columns.findIndex(
-				(x) => x.name === status
+				(x) => x.name === newTask.status
 			);
 			const taskIndex = datas[boardIndex].columns[
 				oldColumnIndex
@@ -87,6 +86,8 @@ const dataSlice = createSlice({
 				if (oldTask.status !== newTask.status) {
 					draft[boardIndex].columns[oldColumnIndex].tasks.splice(taskIndex, 1);
 					draft[boardIndex].columns[newColumnIndex].tasks.push(newTask);
+				} else {
+					draft[boardIndex].columns[oldColumnIndex].tasks[taskIndex] = newTask;
 				}
 			});
 
@@ -146,7 +147,7 @@ export const {
 	addTask,
 	setTheme,
 	setStatus,
-	setCurrentStatus,
+	// setCurrentStatus,
 	deleteTask,
 } = dataSlice.actions;
 export default dataSlice.reducer;

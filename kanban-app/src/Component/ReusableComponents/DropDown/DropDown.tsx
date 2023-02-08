@@ -1,5 +1,5 @@
 import React, { useState, ReactNode } from "react";
-import "./dropdown.css";
+import "./dropdown.scss";
 type dropDownTypes = {
 	children: ReactNode;
 	className: string;

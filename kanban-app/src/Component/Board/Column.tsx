@@ -1,4 +1,3 @@
-import React from "react";
 import { columnProps } from "../../Interface/Interface";
 import { task } from "../../Interface/Interface";
 import Card from "./Card";
@@ -8,7 +7,9 @@ function Column(props: columnProps) {
 		<div className="column">
 			<div className="column_title_div">
 				<span className={`ballcolor ball${props.index}`}></span>
-				<p className="props_title">{props.columnData.name}</p>
+				<p className="props_title">
+					{props.columnData.name} ({props.columnData.tasks.length})
+				</p>
 			</div>
 			{props.columnData.tasks.map((data: task) => (
 				<>

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./deleteboard.css";
+import "./deleteboard.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../Store";
 import { deleteBoard } from "../../../Features/DataSlice";
@@ -18,7 +18,7 @@ function DeleteBoard() {
 	return (
 		<Modal>
 			<div className="deleteboard">
-				<h1>Delete this board?</h1>
+				<h2>Delete this board?</h2>
 				<p>Are you sure you want to delete the {`${boardValue}`} board?</p>
 				<div className="deketediv">
 					<button onClick={remove}>Delete</button>

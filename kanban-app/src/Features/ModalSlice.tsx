@@ -4,6 +4,7 @@ import { module } from "../Interface/Interface";
 const initialState: module = {
 	moduleType: "",
 	tasks: {},
+	modalName: "",
 };
 const modalSlice = createSlice({
 	name: "modal",
@@ -18,8 +19,11 @@ const modalSlice = createSlice({
 				moduleType: "",
 			};
 		},
+		setModalName: (state, action: PayloadAction<any>) => {
+			return { ...state, modalName: action.payload };
+		},
 	},
 });
 
-export const { openModal, closeModal } = modalSlice.actions;
+export const { openModal, closeModal, setModalName } = modalSlice.actions;
 export default modalSlice.reducer;
