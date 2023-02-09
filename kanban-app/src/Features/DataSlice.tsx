@@ -19,8 +19,6 @@ const dataSlice = createSlice({
 	name: "board",
 	initialState,
 	reducers: {
-		hydrate: (state, action) => action.payload,
-
 		addData: (state, action: PayloadAction<any>) => {
 			return { ...state, data: action.payload };
 		},
@@ -139,7 +137,6 @@ const dataSlice = createSlice({
 	},
 });
 export const {
-	hydrate,
 	addData,
 	getData,
 	getId,

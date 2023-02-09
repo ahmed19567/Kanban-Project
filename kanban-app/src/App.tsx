@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Header from "./Component/Header/Header";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "./Store";
-import { addData, hydrate } from "./Features/DataSlice";
+import { addData } from "./Features/DataSlice";
 import { loadState } from "./Features/Browser-Storage";
 import Modal from "./Component/Modal/Modal";
 import Main from "./Component/Main";
@@ -24,10 +24,6 @@ function App() {
 				console.error(err);
 			}
 		};
-
-		if (persistData) {
-			disPatch(hydrate(persistData.data));
-		}
 
 		if (persistData && persistData.data.data.length === 0) {
 			fetchData();
