@@ -6,7 +6,6 @@ import reportWebVitals from "./reportWebVitals";
 import { store } from "./Store";
 import { Provider } from "react-redux";
 import { saveState } from "./Features/Browser-Storage";
-import { debounce } from "lodash";
 import { throttle } from "lodash";
 
 const root = ReactDOM.createRoot(
@@ -14,7 +13,7 @@ const root = ReactDOM.createRoot(
 );
 
 store.subscribe(
-	debounce(() => {
+	throttle(() => {
 		saveState(store.getState());
 	}, 1000)
 );
