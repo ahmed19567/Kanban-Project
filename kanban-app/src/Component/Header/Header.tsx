@@ -1,11 +1,9 @@
-import icon from "../../assets/logo-mobile.svg";
 import whiteLogo from "../../assets/logo-light.svg";
 import blackLogo from "../../assets/logo-dark.svg";
 import { verticalellipsis } from "../../Icons/Icon";
 import { useSelector, useDispatch } from "react-redux";
 import DropDown from "../ReusableComponents/DropDown/DropDown";
-import { openModal, closeModal } from "../../Features/ModalSlice";
-import { addTask } from "../../Features/DataSlice";
+import { openModal } from "../../Features/ModalSlice";
 import { RootState } from "../../Store";
 import "./header.scss";
 function Header() {
@@ -26,7 +24,7 @@ function Header() {
 
 	return (
 		<header className={`header ${theme}`}>
-			<div className="header_div_one">
+			<div className={`header_div_one ${theme}`}>
 				{theme === "dark" ? (
 					<picture className="=header_logo">
 						<img src={whiteLogo} alt="" />
@@ -49,6 +47,7 @@ function Header() {
 							title="Board"
 							onDelete={handleModal}
 							onEdit={editModal}
+							theme={theme}
 						>
 							{verticalellipsis}
 						</DropDown>

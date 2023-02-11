@@ -9,7 +9,8 @@ import { crossIcon } from "../../../Icons/Icon";
 import "./addtask.scss";
 import { RootState } from "../../../Store";
 import { closeModal } from "../../../Features/ModalSlice";
-function AddNewTask() {
+function AddNewTask(props: any) {
+	const { theme } = props;
 	const status = useSelector((state: RootState) => state.data.status);
 	const board = useSelector((state: RootState) => state.tabs);
 	const dispatch = useDispatch();
@@ -52,7 +53,10 @@ function AddNewTask() {
 	};
 	return (
 		<Modal>
-			<form className="addnewtask" onSubmit={handleSubmit(submitForm)}>
+			<form
+				className={`addnewtask ${theme}`}
+				onSubmit={handleSubmit(submitForm)}
+			>
 				<h2>Add New Task</h2>
 				<div className="addnewtask_wrapper">
 					<p>Title</p>
@@ -93,6 +97,7 @@ function AddNewTask() {
 						status={status}
 						currentStatus={currentStatus}
 						onSetCurrentStatus={onSetCurrentStatus}
+						theme={theme}
 					/>
 				</div>
 				<button type="submit" className="savetask_btn">

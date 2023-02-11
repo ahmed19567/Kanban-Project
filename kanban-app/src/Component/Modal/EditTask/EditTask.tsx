@@ -11,8 +11,8 @@ import { RootState } from "../../../Store";
 import SelectDropDown from "../../ReusableComponents/Select/SelectDropDown";
 import "./edittask.scss";
 
-function EditTask() {
-	const data = useSelector((state: RootState) => state.data.data);
+function EditTask(props: any) {
+	const { theme } = props;
 	const tasks = useSelector((state: RootState) => state.modal.tasks);
 	const board = useSelector((state: RootState) => state.tabs);
 	const boardStatus = useSelector((state: RootState) => state.data.status);
@@ -58,7 +58,7 @@ function EditTask() {
 
 	return (
 		<Modal>
-			<form className="edittask" onSubmit={handleSubmit(submit)}>
+			<form className={`edittask ${theme}`} onSubmit={handleSubmit(submit)}>
 				<h2>Edit task</h2>
 				<div className="edittask_wrapper">
 					<p>Title</p>

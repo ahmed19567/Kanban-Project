@@ -4,15 +4,34 @@
     padding: 1em;
     border-radius: .5em;
     h2{
-        margin-bottom: 1em;
+        margin-bottom: .5em;
     }
     p{
-        color: #828fa3;
         margin-bottom: 1em;
+        
+    }
+    &.dark{
+
+        h2{
+            color: #ea5555;
+        }
+        p{
+            color: #828fa3;
+        }
+    }
+    &.light{
+        background-color: #fff;
+        h2{
+            color: #ea5555;
+        }
+        p{
+            color: #828fa3;
+
+        }
     }
 
 }
-.deketediv{
+.deletediv{
     display: flex;
     justify-content: space-between;
     align-items: center;

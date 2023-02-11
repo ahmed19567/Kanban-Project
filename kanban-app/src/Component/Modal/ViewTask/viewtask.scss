@@ -1,36 +1,40 @@
 .viewtask{
-    background-color: #2b2c37;
+    // background-color: #2b2c37;
      width: 100%;
      padding: 1rem;
-    //  &.dark{
-    //     background-color: #2b2c37;
+     &.dark{
+        background-color: #2b2c37;
 
-    //     p:not(.description){
-    //         color: white;
-    //     }
-    //     label{
-    //         background-color: #20212C;
-    //     }
+        p:not(.description){
+            color: white;
+        }
+        label{
+            background-color: #20212C;
+        }
 
 
-    //  }
-    //  &.light{
+     }
+     &.light{
 
-    //     background-color: #fff;
+        background-color: #fff;
 
-    //     p:not(.description){
-    //         color: #828fa3;
-    //     }
-    //     h2{
-    //         color: #000;
-    //     }
-    //     label{
-    //       background-color: #F4F7FD;
+        p:not(.description){
+            color: #828fa3;
+        }
+        h2{
+            color: #000;
+        }
+        label{
+          background-color: #F4F7FD;
+          color: #828fa3;
          
-    //     }
+        }
+        
+    
+       
         
       
-    //  }
+     }
     .description{
         color: #828fa3;   font-size: .75;
         font-weight: 400;

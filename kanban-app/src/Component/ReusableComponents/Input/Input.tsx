@@ -21,7 +21,7 @@ function Input(props: input) {
 				id="checkbox"
 				className="checkbox_prototype"
 			/>
-			{task}
+			<p>{task}</p>
 		</label>
 	);
 }

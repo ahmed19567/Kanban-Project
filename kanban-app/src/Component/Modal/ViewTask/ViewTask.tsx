@@ -5,10 +5,10 @@ import Input from "../../ReusableComponents/Input/Input";
 import { module } from "../../../Interface/Interface";
 import SelectDropDown from "../../ReusableComponents/Select/SelectDropDown";
 import { verticalellipsis } from "../../../Icons/Icon";
-import "./viewtask.scss";
 import { closeModal, openModal } from "../../../Features/ModalSlice";
 import { RootState } from "../../../Store";
 import { editTask, deleteTask } from "../../../Features/DataSlice";
+import "./viewtask.scss";
 
 import DropDown from "../../ReusableComponents/DropDown/DropDown";
 
@@ -91,6 +91,7 @@ function ViewTask(props: module) {
 						title="Task"
 						onEdit={handleEdit}
 						onDelete={onDelete}
+						theme={theme}
 					>
 						{verticalellipsis}
 					</DropDown>
@@ -120,6 +121,7 @@ function ViewTask(props: module) {
 						status={boardStatus}
 						currentStatus={value.status ? value.status : boardStatus[0]}
 						onSetCurrentStatus={changeStatus}
+						theme={theme}
 					/>
 				</div>
 			</div>

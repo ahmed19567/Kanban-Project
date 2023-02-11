@@ -2,9 +2,27 @@
     display: flex;
     flex-direction: column;
     width: 450px;
-    // height: 500px;
-    background-color: #2b2c37;
-    padding: 2em;
+      padding: 2em;
+    &.dark{
+        background-color: #2b2c37;
+        input{
+            color: #fff;
+ 
+        }
+       
+      }
+      &.light{
+        background-color: #ffffff;
+        h2{
+          color: #000;
+        }
+        label{
+          color: #97a3b2;
+          
+        }
+      }
+  
+
     h2{
         margin-bottom: .5em;
     }
@@ -23,9 +41,9 @@
         background-color: transparent;
         margin-bottom: 1em;
         border: 2px solid rgba(130,143,163,.4);
-        color: #fff;
         padding: .5em 1em;
       margin-bottom: .5em;
+      opacity: .3;
      }
      input:disabled {
     

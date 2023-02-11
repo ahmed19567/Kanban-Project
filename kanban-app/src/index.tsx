@@ -1,19 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
+import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { store } from "./Store";
 import { Provider } from "react-redux";
 import { saveState } from "./Features/Browser-Storage";
-import { throttle } from "lodash";
+import { debounce } from "lodash";
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement
 );
 
 store.subscribe(
-	throttle(() => {
+	debounce(() => {
 		saveState(store.getState());
 	}, 1000)
 );

@@ -1,4 +1,4 @@
-import React, { useState, ReactNode } from "react";
+import { useState, ReactNode } from "react";
 import "./dropdown.scss";
 type dropDownTypes = {
 	children: ReactNode;
@@ -7,10 +7,11 @@ type dropDownTypes = {
 	title?: string;
 	onEdit: () => void;
 	onDelete: () => void;
+	theme?: string;
 };
 
 function DropDown(props: dropDownTypes) {
-	const { onDelete, onEdit } = props;
+	const { onDelete, onEdit, theme } = props;
 	const [open, setOpen] = useState(false);
 	function toggleDropDown() {
 		setOpen(!open);
@@ -31,7 +32,7 @@ function DropDown(props: dropDownTypes) {
 				{props.children}
 			</button>
 			{open && (
-				<div className="dropdownmenu">
+				<div className={`dropdownmenu ${theme}`}>
 					<button className="dropdownmenu_btn" onClick={edit}>
 						Edit {props.title}
 					</button>

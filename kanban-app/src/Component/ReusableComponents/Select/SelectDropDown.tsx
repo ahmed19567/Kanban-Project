@@ -6,10 +6,11 @@ interface SelectDropDownProps {
 	status: [] | any;
 	currentStatus?: string | "";
 	onSetCurrentStatus: (item: string) => void;
+	theme?: string;
 }
 
 function SelectDropDown(props: SelectDropDownProps) {
-	const { status, currentStatus, onSetCurrentStatus } = props;
+	const { status, currentStatus, onSetCurrentStatus, theme } = props;
 	const [openDropDown, setOpenDropDown] = useState(false);
 	function toggleDropDown() {
 		setOpenDropDown(!openDropDown);
@@ -21,7 +22,7 @@ function SelectDropDown(props: SelectDropDownProps) {
 				<p>{currentStatus} </p>
 				{openDropDown ? <i>{faChevronDown}</i> : <i>{faChevronUp}</i>}
 			</div>
-			<div className="selectDropDown_bottomwrapper">
+			<div className={`selectDropDown_bottomwrapper ${theme}`}>
 				{openDropDown
 					? status.map((item: any, index: number) => (
 							<button

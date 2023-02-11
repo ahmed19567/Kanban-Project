@@ -10,11 +10,12 @@ import "./column.scss";
 
 import Modal from "../../ReusableComponents/Modal/Modal";
 import { closeModal } from "../../../Features/ModalSlice";
-function AddNewColumn() {
+function AddNewColumn(props: any) {
 	const data = useSelector((state: RootState) => state.data.data);
 	const boardValue = useSelector((state: RootState) => state.tabs);
 	const findData = data.find((x) => x.name === boardValue);
 	const dispatch = useDispatch();
+	const { theme } = props;
 	const {
 		register,
 		handleSubmit,
@@ -49,7 +50,7 @@ function AddNewColumn() {
 	return (
 		<Modal>
 			<form
-				className="addnewcolumn_container"
+				className={`addnewcolumn_container ${theme}`}
 				onSubmit={handleSubmit(submitData)}
 			>
 				<h2>Add New Column</h2>

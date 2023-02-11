@@ -43,10 +43,18 @@
     left: 0;
     flex-direction: column;
     // columns: .5em;
-     background-color: inherit;
      z-index: 10;
-     background-color: #20212c;
      top: 2.8em;
+    //  background-color: #20212c;
+
+     &.dark{
+        background-color: #20212c;
+
+     }
+     &.light{
+        background-color: #fff;
+      }
+     
   
     
 }
@@ -61,14 +69,12 @@
     border-bottom: 1px solid black;
     border: none;
     z-index: 100;
-    background-color: #2b2c37;
-    p{
+      p{
         color: #828fa3;
         cursor: pointer;
         font-size: .75em;
         font-weight: 700;
      }
-    background-color: inherit;
-   
+ background-color: inherit;   
 
 }

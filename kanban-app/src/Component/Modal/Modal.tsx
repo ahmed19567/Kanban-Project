@@ -9,15 +9,16 @@ import EditTask from "./EditTask/EditTask";
 import AddNewTask from "./AddNewTask/AddNewTask";
 function Modal() {
 	const modal = useSelector((state: RootState) => state.modal);
+	const theme = useSelector((state: RootState) => state.data.colorTheme);
 
 	return (
 		<>
-			{modal.moduleType === "AddBoard" && <AddBoard />}
-			{modal.moduleType === "AddColumn" && <AddNewColumn />}
-			{modal.moduleType === "DeleteBoard" && <DeleteBoard />}
+			{modal.moduleType === "AddBoard" && <AddBoard theme={theme} />}
+			{modal.moduleType === "AddColumn" && <AddNewColumn theme={theme} />}
+			{modal.moduleType === "DeleteBoard" && <DeleteBoard theme={theme} />}
 			{modal.moduleType === "ViewTask" && <ViewTask {...modal} />}
-			{modal.moduleType === "EditTask" && <EditTask />}
-			{modal.moduleType === "AddNewTask" && <AddNewTask />}
+			{modal.moduleType === "EditTask" && <EditTask theme={theme} />}
+			{modal.moduleType === "AddNewTask" && <AddNewTask theme={theme} />}
 		</>
 	);
 }

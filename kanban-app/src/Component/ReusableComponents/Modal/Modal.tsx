@@ -1,5 +1,4 @@
 import React, { Children, ReactNode, useEffect } from "react";
-import { JsxElement } from "typescript";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../../Features/ModalSlice";
 import "./modal.scss";

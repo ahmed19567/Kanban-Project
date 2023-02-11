@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "./Store";
 import { addData } from "./Features/DataSlice";
 import { loadState } from "./Features/Browser-Storage";
+import { setStatus } from "./Features/DataSlice";
 import Modal from "./Component/Modal/Modal";
 import Main from "./Component/Main";
 

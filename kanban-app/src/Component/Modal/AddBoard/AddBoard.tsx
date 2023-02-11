@@ -11,8 +11,9 @@ import { crossIcon } from "../../../Icons/Icon";
 import Modal from "../../ReusableComponents/Modal/Modal";
 import "./addboard.scss";
 
-function AddBoard() {
+function AddBoard(props: any) {
 	const data = useSelector((state: RootState) => state.data.data);
+	const { theme } = props;
 	const disPatch = useDispatch();
 	const {
 		register,
@@ -50,7 +51,7 @@ function AddBoard() {
 				className="addnewboardform"
 				onSubmit={handleSubmit(submitBoard)}
 			>
-				<div className="addnewboard_container">
+				<div className={`addnewboard_container ${theme}`}>
 					{/* <div className="addnewboard_topwrapper"> */}
 					<h2>Add New Board</h2>
 					{/* </div> */}

@@ -1,23 +1,27 @@
 
-  
-   .modal{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    color: white;
-   }
+
    .addnewboard_container{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #2b2c37;
     margin: 0 auto;
     width: 450px;
     color: white;
     padding: 2em;
     border-radius: 5px;
-
+    &.dark{
+      background-color: #2b2c37;
+     
+    }
+    &.light{
+      background-color: #ffffff;
+      h2{
+        color: #000;
+      }
+      label{
+        color: #97a3b2;
+      }
+    }
     h2{
         margin-bottom: .5em;
     }
